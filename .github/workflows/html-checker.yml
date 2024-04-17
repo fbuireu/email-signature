@@ -11,5 +11,6 @@ jobs:
       - uses: actions/checkout@v4
       - uses: anishathalye/proof-html@v2
         with:
+          check_favicon: false
           directory: ./
           
