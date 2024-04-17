@@ -13,7 +13,6 @@ jobs:
         with:
           check_css: false
           check_favicon: false
-          ignore_url_re: |
-            ^https://linkedin.com/
+          ignore_url: "https://www.linkedin.com/in/ferran-buireu"
           directory: ./
           
