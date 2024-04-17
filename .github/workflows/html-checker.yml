@@ -17,4 +17,4 @@ jobs:
           tokens: |
             {"https://github.com": "${{ secrets.GITHUB_TOKEN }}"}
           swap_urls: |
-            {"^https://www.linkedin": "/"}
+            {"^https://www.linkedin.com/in/ferran-buireu/": "/"}
