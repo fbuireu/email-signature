@@ -14,5 +14,7 @@ jobs:
           directory: ./
           check_css: false
           check_favicon: false
-          ignore_url: |
-            https://www.linkedin.com/in/ferran-buireu
+          tokens: |
+            {"https://github.com": "${{ secrets.GITHUB_TOKEN }}"}
+          swap_urls: |
+            {"^https://www.linkedin": "/"}
