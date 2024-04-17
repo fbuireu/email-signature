@@ -6,7 +6,8 @@ on:
   push: 
   
 jobs:
-  linkChecker:
+  build:
+    name: Link Checker
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -18,5 +19,5 @@ jobs:
         uses: peter-evans/create-issue-from-file@v4
         with:
           title: Link Checker Report
-          content-filepath: ./link-checker-output.md
+          content-filepath: ./reports/link-checker-output.md
           labels: report, automated issue
