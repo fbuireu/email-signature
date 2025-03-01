@@ -5,6 +5,10 @@
    "schedule": ["on the first day of the month"], 
    "assigneesFromCodeOwners": true,
    "reviewersFromCodeOwners": true,
+   "lockFileMaintenance": {
+      "enabled": true,
+      "automerge": true
+  },
    "packageRules":[
       {
          "automerge": true
