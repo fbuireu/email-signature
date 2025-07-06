@@ -1,5 +1,9 @@
 name: Link Checker
 
+permissions:
+  contents: read
+  issues: write
+
 on:
   workflow_dispatch:
   pull_request:
