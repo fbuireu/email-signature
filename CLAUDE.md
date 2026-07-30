@@ -109,13 +109,12 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
 - **The automation runs on `secrets.PAT`**, because a token cannot approve its own pull request. It is a
   standing write credential whose expiry nothing monitors — when it lapses, auto-approve and auto-merge stop
   silently.
-- **`link-checker.yml` cannot open its issue — confirmed defect.** The *Create Issue From File* step reads
-  `./reports/link-checker-output.md`, but the workflow never sets lychee's `output` input, whose default is
-  `lychee/out.md` (verified in the `action.yml` of the pinned `lycheeverse/lychee-action` SHA). The report
-  is therefore never at the path the next step looks in, so issue creation fails exactly when a link breaks
-  — the one moment it exists for. The build still goes red via `fail: true`, so breakage is not silent, but
-  the issue never appears. Fix by setting `output: ./reports/link-checker-output.md` on the lychee step, or
-  by pointing `content-filepath` at `./lychee/out.md`.
+- **In `link-checker.yml`, two paths must agree and nothing checks that they do.** lychee's `output` and the
+  *Create Issue From File* step's `content-filepath` both name `./reports/link-checker-output.md`. Change
+  one without the other and issue creation fails on a missing file — silently, because that step only ever
+  runs when a link is already broken. Setting `output` explicitly is load-bearing: lychee's own default is
+  `lychee/out.md`, so dropping the input restores the bug. This was the real state of the workflow until it
+  was fixed, and it had never once been exercised.
 
 ## Repository identity is part of the contract
 

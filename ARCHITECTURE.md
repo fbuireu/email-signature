@@ -110,7 +110,7 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 
 | Workflow | Trigger | Does |
 | --- | --- | --- |
-| `link-checker.yml` | push, pull request, manual | Runs lychee with `fail: true`. The only check on the delivery path. Its issue-creation step is broken — see the gotcha in [CLAUDE.md](./CLAUDE.md) |
+| `link-checker.yml` | push, pull request, manual | Runs lychee with `fail: true`, then opens an issue from the report when it fails. The only check on the delivery path |
 | `zizmor.yml` | push to `main`, any pull request | Statically audits the workflow files themselves; `permissions: {}` at top level, narrowed per job |
 | `renovate-auto-approve.yml` | pull request opened/synchronised/reopened/labelled | Approves Renovate pull requests labelled `patch-update`, `minor-update`, `pin-update` or `lock-maintenance`, once |
 | `dependabot-auto-merge.yml` | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor/dev/indirect updates; comments and labels on major |
