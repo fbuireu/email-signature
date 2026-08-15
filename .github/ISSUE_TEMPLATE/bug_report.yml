@@ -1,0 +1,38 @@
+name: Bug Report
+description: Report a rendering problem, a broken link, or an asset that stopped working
+title: '[Bug]: '
+labels: ['bug', 'triage']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report! If what you found could harm someone *receiving* an email with this signature — a hijacked link, a tampered asset — please use the Security Policy (linked when you chose a template) instead of a public issue.
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of problem?
+      options:
+        - Rendering (the signature displays wrong in a mail client)
+        - Broken link (a target 404s or redirects wrong)
+        - Asset (an image fails to load or looks wrong)
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: description
+    attributes:
+      label: Description
+      description: What is wrong, and where?
+    validations:
+      required: true
+  - type: input
+    id: client
+    attributes:
+      label: Mail client and OS
+      description: For rendering problems — which client, which version, which OS?
+      placeholder: Outlook 365 on Windows 11, Gmail web on Chrome, Apple Mail on iOS 19...
+  - type: textarea
+    id: additional
+    attributes:
+      label: Additional Context
+      description: Screenshots help enormously here
