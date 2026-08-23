@@ -18,4 +18,4 @@ those paths are quoted by every email already sent, so they are never renamed or
 
 ## License
 
-[MIT](./LICENSE) © Ferran Buireu. The third-party marks under `assets/images/png/` belong to their owners and are not covered by it ([ADR 0008](./docs/adr/0008-mit-replaces-the-cc0-dedication.md)).
+[MIT](./LICENSE) © Ferran Buireu. The third-party marks under [`assets/images/png/`](./assets/images/png) belong to their owners and are not covered by it ([ADR 0008](./docs/adr/0008-mit-replaces-the-cc0-dedication.md)).

@@ -54,7 +54,7 @@ search, no test and no CI check will find them.
   what recipients see first and the whole fallback if the assets stop being served. An `<img>` without one
   is a defect.
 - Assets are named for what they depict, lowercase and hyphenated ([`stack-overflow.png`](./assets/images/png/stack-overflow.png)), and live flat in
-  `assets/images/png/`.
+  [`assets/images/png/`](./assets/images/png).
 - Judge changes in a **mail client**, never in a browser. Chrome renders markup that Outlook mangles.
 
 ## Maintenance contract
@@ -63,7 +63,7 @@ search, no test and no CI check will find them.
 | --- | --- |
 | Anything visual in `index.html` | Regenerate [`assets/images/output/index.png`](./assets/images/output/index.png) and commit it in the same change |
 | An icon | Add a new Published Path; never edit or rename the old one |
-| A link target | Check whether the host belongs in `.lycheeignore`, and say why in the commit |
+| A link target | Check whether the host belongs in [`.lycheeignore`](./.lycheeignore), and say why in the commit |
 | A domain word's meaning, or introduce one | [`CONTEXT.md`](./CONTEXT.md), vocabulary only |
 | The delivery path, the workflows, or the file structure | [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 | A behaviour a doc states as an invariant or a gotcha | that bullet, or delete it if it stopped being true |

@@ -36,7 +36,7 @@ this repository invites changes.
   the tree from this commit onward, and nothing else. Relicensing is therefore additive, not a revocation.
 - **The licence is now stricter than it was**, which is the honest way to describe going from a public-domain
   dedication to a permissive licence. A reuser who wants the old terms can take any pre-relicensing commit.
-- **MIT still cannot reach the brand marks.** Almost everything in `assets/images/png/` is a third-party logo
+- **MIT still cannot reach the brand marks.** Almost everything in [`assets/images/png/`](../../assets/images/png) is a third-party logo
   (LinkedIn, GitHub, X, Reddit, Medium, Strava, Unsplash, Bluesky, Stack Overflow, 500px), and no licence
   granted here places someone else's trademark under it. Those files remain governed by their owners' brand
   guidelines whatever [`LICENSE`](../../LICENSE) says. What the licence actually covers is

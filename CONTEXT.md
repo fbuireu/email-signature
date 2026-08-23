@@ -59,7 +59,7 @@ _Avoid_: history, old emails, archive, legacy
 **Supersession**: How an Asset is changed, given that it cannot be modified: add a new Published Path and repoint the Signature at it, leaving the old one serving Sent Mail. It makes `assets/` append-only, and it makes "unreferenced" a meaningless signal there: an Asset no Signature mentions may still be the only thing an old message has.
 _Avoid_: replacement, update, overwrite, migration
 
-**Ignored Domain**: A host listed in `.lycheeignore` and therefore never verified by the link checker. These are excluded because they defend against bots and answer CI with `403` or another `4xx`, not because the links are broken. A genuinely dead one on those hosts fails silently and forever.
+**Ignored Domain**: A host listed in [`.lycheeignore`](./.lycheeignore) and therefore never verified by the link checker. These are excluded because they defend against bots and answer CI with `403` or another `4xx`, not because the links are broken. A genuinely dead one on those hosts fails silently and forever.
 _Avoid_: allowlist, exception, skipped link, false positive
 
 ---

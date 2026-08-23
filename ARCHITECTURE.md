@@ -12,7 +12,7 @@ attached to each. They are siblings, neither subordinate to the other
 
 | | **The Signature** | **The asset store** |
 | --- | --- | --- |
-| Is | [`index.html`](./index.html), a single file | `assets/images/png/`, a set of small PNGs |
+| Is | [`index.html`](./index.html), a single file | [`assets/images/png/`](./assets/images/png), a set of small PNGs |
 | Kind | A document, finished when it renders | A service, never finished |
 | Consumers | One person, pasting it into a mail client | Every message already sent |
 | Contract | None. Rewrite it freely | Paths are permanent ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)) |
@@ -115,7 +115,7 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 | [`renovate-auto-approve.yml`](./.github/workflows/renovate-auto-approve.yml) | pull request opened/synchronised/reopened/labelled | Approves Renovate pull requests labelled `patch-update`, `minor-update`, `pin-update` or `lock-maintenance`, once |
 | [`dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor/dev/indirect updates; comments and labels on major |
 
-`.lycheeignore` exempts four hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
+[`.lycheeignore`](./.lycheeignore) exempts four hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
 bots and answer CI with `403` or another `4xx`. Those links are therefore never verified at all: if one
 dies for real, nothing notices.
 
