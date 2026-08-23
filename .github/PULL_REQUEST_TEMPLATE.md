@@ -8,7 +8,7 @@
 
 - [ ] 🐛 Rendering fix (a mail client displays the signature wrong)
 - [ ] 🔗 Link fix (a target moved or died)
-- [ ] 🖼️ Asset change (a new Published Path — never an edit to an old one)
+- [ ] 🖼️ Asset change (a new Published Path, never an edit to an old one)
 - [ ] 📝 Documentation update
 - [ ] 🔧 Workflow/configuration change
 
@@ -16,7 +16,7 @@
 
 <!-- Please check all that apply using "x" -->
 
-- [ ] **No existing path under `assets/` is renamed, moved, deleted, or repointed** — new paths only
+- [ ] **No existing path under `assets/` is renamed, moved, deleted, or repointed**: new paths only
 - [ ] Styling stays in inline `style` attributes; layout stays in nested `<table role="presentation">`
 - [ ] Every `<img>` I touched has a meaningful `alt`
 - [ ] I judged the change in a real mail client, not a browser

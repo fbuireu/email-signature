@@ -13,7 +13,7 @@ attached to each. They are siblings, neither subordinate to the other
 | | **The Signature** | **The asset store** |
 | --- | --- | --- |
 | Is | `index.html`, a single file | `assets/images/png/`, a set of small PNGs |
-| Kind | A document — finished when it renders | A service — never finished |
+| Kind | A document, finished when it renders | A service, never finished |
 | Consumers | One person, pasting it into a mail client | Every message already sent |
 | Contract | None. Rewrite it freely | Paths are permanent ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)) |
 | Fails by | Rendering wrong in Outlook | A path going missing |
@@ -54,7 +54,7 @@ Two consequences follow directly and are worth stating before anything else:
 
 - **A push to `main` is a publication.** There is no deploy step to hold anything back
   ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)), so an accidental push cannot be taken back
-  by reverting it — the URL was live in between.
+  by reverting it: the URL was live in between.
 - **The repository's identity is part of the contract.** Owner, name, default branch and public visibility
   all appear in the published URLs, so renaming, transferring, or making this repository private breaks
   sent mail exactly as deleting a file would.
@@ -70,33 +70,33 @@ Its structure, top to bottom:
 
 | Region | Holds |
 | --- | --- |
-| Wrapper table (`width="550"`) | Everything. Fixed width — mail clients do not do responsive reliably |
+| Wrapper table (`width="550"`) | Everything. Fixed width, since mail clients do not do responsive reliably |
 | Left cell | The avatar, 120px, circular via `border-radius`, fetched from GitHub's avatar service |
 | Right cell, rows 1–2 | Name, then role and employer, with a `border-bottom` acting as a rule |
-| Right cell, rows 3–4 | Phone and personal site — the two Contact Links with generic icons |
+| Right cell, rows 3–4 | Phone and personal site: the two Contact Links with generic icons |
 | Right cell, final row | A row of social Contact Links, each an icon-only `<a>` in its own cell |
 
 Every `<img>` carries an `alt`, and that is load-bearing rather than polite: mail clients block remote
 images by default, so the Alt Text is what most recipients see first, and it is the entire fallback if the
 assets ever stop being served.
 
-The avatar is the one image **not** served from this repository — it comes from
+The avatar is the one image **not** served from this repository. It comes from
 `avatars.githubusercontent.com`, so it changes whenever the GitHub profile picture changes, without a
 commit here. That is convenient and entirely outside this repository's control.
 
-The repository's own icons are referenced in two different URL forms — the social ones via a
+The repository's own icons are referenced in two different URL forms: the social ones via a
 `github.com/…/blob/…?raw=true` redirect, the rest directly from `raw.githubusercontent.com`. Both are
 published and neither can now be changed ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)).
 
 ## 4. There is no build
 
 `index.html` is source and artefact at once. No generator, no template, no inliner, no package manager, no
-lockfile, no dependencies — cloning gives a complete working copy, and the only "build" is opening the file
+lockfile, no dependencies; cloning gives a complete working copy, and the only "build" is opening the file
 ([ADR 0005](./docs/adr/0005-no-build-step.md)).
 
 The Preview, `assets/images/output/index.png`, is likewise a hand-taken screenshot uploaded by hand. It is
 shown in the README and nothing checks that it still matches the Signature; keeping it in step is a human
-obligation, recorded in [CLAUDE.md](./CLAUDE.md). In practice it has been honoured — both times the
+obligation, recorded in [CLAUDE.md](./CLAUDE.md). In practice it has been honoured: both times the
 Signature changed, the Preview followed within four minutes.
 
 Correctness here cannot be automated in any case. "Renders in Outlook" is not a property any generator
@@ -115,7 +115,7 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 | `renovate-auto-approve.yml` | pull request opened/synchronised/reopened/labelled | Approves Renovate pull requests labelled `patch-update`, `minor-update`, `pin-update` or `lock-maintenance`, once |
 | `dependabot-auto-merge.yml` | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor/dev/indirect updates; comments and labels on major |
 
-`.lycheeignore` exempts four hosts — Reddit, Medium, Unsplash and LinkedIn — because they defend against
+`.lycheeignore` exempts four hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
 bots and answer CI with `403` or another `4xx`. Those links are therefore never verified at all: if one
 dies for real, nothing notices.
 
@@ -137,7 +137,7 @@ The documents above are **what** and **how**. [docs/adr/](./docs/adr/) is **why*
 | [0006](./docs/adr/0006-cc0-1-0-licence.md) | CC0-1.0 licence |
 | [0007](./docs/adr/0007-actions-are-pinned-by-digest-and-auto-merged.md) | Actions are pinned by digest and auto-merged |
 
-Every one of them follows [0000, the template](./docs/adr/0000-adr-template.md) — `# N. Title`, a date, a
+Every one of them follows [0000, the template](./docs/adr/0000-adr-template.md): `# N. Title`, a date, a
 status, then *Context*, *Decision*, *Consequences*. A new ADR starts by copying that file, not by writing
 one from scratch, and is written only when the decision is **hard to reverse**, **surprising without
 context** and **the result of a real trade-off**.

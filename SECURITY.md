@@ -11,12 +11,12 @@ fetches. A fix ships by pushing.
 **Please do not report security vulnerabilities through public GitHub
 issues.**
 
-This repository contains no executable code — static HTML and images only —
-but it is still worth a private report if you find:
+This repository contains no executable code, only static HTML and images, but
+it is still worth a private report if you find:
 
-- A **link in the signature pointing somewhere it shouldn't** — an expired or
+- A **link in the signature pointing somewhere it shouldn't**: an expired or
   taken-over domain, a redirect through something untrustworthy
-- An **asset integrity problem** — a published image whose bytes changed, or
+- An **asset integrity problem**: a published image whose bytes changed, or
   a path serving something other than what it claims
 - Anything that could make an email carrying this signature dangerous to the
   person receiving it

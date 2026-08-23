@@ -1,7 +1,7 @@
 # Contributing to email-signature
 
 A caveat up front: this is one person's email signature and the CDN that
-serves its assets — personal infrastructure, not a community project. The
+serves its assets. It is personal infrastructure, not a community project. The
 contributions that fit are small and specific: a broken link, a rendering
 problem in a mail client, an accessibility gap. Anything bigger, open an issue
 first.
@@ -26,7 +26,7 @@ From that follows the rule that governs `assets/`:
 
 Every email already sent quotes those URLs, and nothing in this repository can
 see the inboxes that would break. Change an image by *adding* a new path and
-updating `index.html` to reference it — the old file stays, forever.
+updating `index.html` to reference it. The old file stays, forever.
 
 ## What a change here looks like
 
@@ -34,14 +34,14 @@ There is no build, no dependencies, and nothing to install: `index.html` is
 source and artefact at once. But the constraints are unusual, because mail
 clients dictate the markup:
 
-- **Inline `style` attributes only** — mail clients strip `<style>` blocks
+- **Inline `style` attributes only**: mail clients strip `<style>` blocks
   and external stylesheets
-- **Layout is nested `<table role="presentation">`** — no float, flex, grid
+- **Layout is nested `<table role="presentation">`**: no float, flex, grid
   or position; Outlook renders with Word's engine
-- **PNG icons at fixed pixel sizes** — no SVG, no icon fonts
-- **Every `<img>` needs a meaningful `alt`** — most clients block remote
+- **PNG icons at fixed pixel sizes**: no SVG, no icon fonts
+- **Every `<img>` needs a meaningful `alt`**: most clients block remote
   images by default, so the alt text is what recipients see first
-- **Repetition is correct** — the same inline declarations recur because
+- **Repetition is correct**: the same inline declarations recur because
   there is nowhere to share them; factoring them out is the failure mode
 
 **Judge changes in a real mail client, never in a browser.** Chrome happily
@@ -54,7 +54,7 @@ renders markup that Outlook mangles. Anything visual also means regenerating
   could harm a recipient, an issue otherwise
 - **A rendering bug** → an issue naming the mail client and OS, ideally with a
   screenshot
-- **A fix** → fork, branch, PR — respecting the rules above; the PR template
+- **A fix** → fork, branch, PR, respecting the rules above; the PR template
   walks the checklist
 
 Thanks for contributing! 🎉
