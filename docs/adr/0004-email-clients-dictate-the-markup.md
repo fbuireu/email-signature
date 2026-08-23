@@ -8,7 +8,7 @@ Accepted.
 
 ## Context
 
-`index.html` looks like it was written in 2003: nested `<table>` elements for layout, every style repeated inline on the element it applies to, `width="120"` attributes alongside CSS, `role="presentation"` on tables that carry no data, and raster PNGs for icons that would obviously be SVG anywhere else. Read as a web page it is indefensible. It is not a web page.
+[`index.html`](../../index.html) looks like it was written in 2003: nested `<table>` elements for layout, every style repeated inline on the element it applies to, `width="120"` attributes alongside CSS, `role="presentation"` on tables that carry no data, and raster PNGs for icons that would obviously be SVG anywhere else. Read as a web page it is indefensible. It is not a web page.
 
 An email body is rendered by whatever engine the recipient's client happens to use, and the worst of those set the floor:
 

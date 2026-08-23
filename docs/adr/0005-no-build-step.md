@@ -16,14 +16,14 @@ This decision fails the usual test for an ADR: adding a build later is a Tuesday
 
 ## Decision
 
-`index.html` is both source and artefact. It is hand-edited, committed as-is, and pasted into the mail client verbatim. There is no generator, no template, no inliner, no package manager, no lockfile and no `node_modules`: the repository has no runtime dependencies of any kind.
+[`index.html`](../../index.html) is both source and artefact. It is hand-edited, committed as-is, and pasted into the mail client verbatim. There is no generator, no template, no inliner, no package manager, no lockfile and no `node_modules`: the repository has no runtime dependencies of any kind.
 
-The same applies to the preview: `assets/images/output/index.png` is a screenshot taken by hand and uploaded, not a rendered artefact, and keeping it in step with the HTML is a human obligation rather than an automated one.
+The same applies to the preview: [`assets/images/output/index.png`](../../assets/images/output/index.png) is a screenshot taken by hand and uploaded, not a rendered artefact, and keeping it in step with the HTML is a human obligation rather than an automated one.
 
 ## Consequences
 
 - **The repository has no install, no test and no local dev loop.** Cloning it gives a working copy of everything; the only "build" is opening `index.html` or pasting it somewhere.
 - Editing means touching repeated inline styles by hand in several places, which is exactly the cost [ADR 0004](./0004-email-clients-dictate-the-markup.md) accepts. Nothing here reduces it; this decision declines to pay a standing toolchain cost to reduce it.
 - **The preview can silently drift from the Signature.** In practice it has not (both times `index.html` changed, the PNG was regenerated within four minutes), but nothing enforces it, and a stale preview misrepresents the product on the README with no failing check anywhere. The obligation is recorded in [`CLAUDE.md`](../../CLAUDE.md) instead.
-- The only automation is `.github/workflows/link-checker.yml`, which verifies URLs rather than markup or rendering. Structural defects in the HTML are caught by reading it, and nothing else.
+- The only automation is [`.github/workflows/link-checker.yml`](../../.github/workflows/link-checker.yml), which verifies URLs rather than markup or rendering. Structural defects in the HTML are caught by reading it, and nothing else.
 - If this is ever revisited, the trigger to watch for is edit *frequency*, not file size. A signature that changes monthly justifies a generator; one that changes twice in two years does not.

@@ -16,7 +16,7 @@ Separation is nevertheless not available at a reasonable price, and the reason i
 
 ## Decision
 
-Both products live in this repository, and this is treated as a decision with a stated reason rather than as an accident of how the repository started. `index.html` and `assets/` are siblings; neither is subordinate to the other, and the documentation names both as products rather than describing the assets as an implementation detail of the Signature.
+Both products live in this repository, and this is treated as a decision with a stated reason rather than as an accident of how the repository started. [`index.html`](../../index.html) and `assets/` are siblings; neither is subordinate to the other, and the documentation names both as products rather than describing the assets as an implementation detail of the Signature.
 
 ## Consequences
 

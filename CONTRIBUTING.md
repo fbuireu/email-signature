@@ -26,7 +26,7 @@ From that follows the rule that governs `assets/`:
 
 Every email already sent quotes those URLs, and nothing in this repository can
 see the inboxes that would break. Change an image by *adding* a new path and
-updating `index.html` to reference it. The old file stays, forever.
+updating [`index.html`](./index.html) to reference it. The old file stays, forever.
 
 ## What a change here looks like
 
@@ -46,7 +46,7 @@ clients dictate the markup:
 
 **Judge changes in a real mail client, never in a browser.** Chrome happily
 renders markup that Outlook mangles. Anything visual also means regenerating
-`assets/images/output/index.png` in the same change.
+[`assets/images/output/index.png`](./assets/images/output/index.png) in the same change.
 
 ## How to contribute
 

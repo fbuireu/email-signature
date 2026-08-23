@@ -8,7 +8,7 @@ Accepted.
 
 ## Context
 
-A file in `assets/images/png/` is not really a file in a repository. Once a Signature carrying its URL has been pasted into a mail client and a message has been sent, that path is quoted in every copy of that message, in inboxes this repository has no reach into and cannot enumerate. **A sent email cannot be edited.** Deleting or renaming the file does not break a build, does not fail a test, and does not fail the link checker: `index.html` gets updated in the same commit, so CI stays green while mail from three years ago quietly loses an icon.
+A file in `assets/images/png/` is not really a file in a repository. Once a Signature carrying its URL has been pasted into a mail client and a message has been sent, that path is quoted in every copy of that message, in inboxes this repository has no reach into and cannot enumerate. **A sent email cannot be edited.** Deleting or renaming the file does not break a build, does not fail a test, and does not fail the link checker: [`index.html`](../../index.html) gets updated in the same commit, so CI stays green while mail from three years ago quietly loses an icon.
 
 The normal repository instinct is the opposite: rename freely, the compiler will find the callers. Here the callers are not in the repository. Treating a rename as safe is the single most likely way to cause damage in this project, and the damage is invisible from inside it.
 
