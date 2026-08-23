@@ -134,8 +134,9 @@ The documents above are **what** and **how**. [docs/adr/](./docs/adr/) is **why*
 | [0003](./docs/adr/0003-the-signature-and-its-assets-share-one-repository.md) | The Signature and its assets share one repository |
 | [0004](./docs/adr/0004-email-clients-dictate-the-markup.md) | Email clients dictate the markup |
 | [0005](./docs/adr/0005-no-build-step.md) | No build step |
-| [0006](./docs/adr/0006-cc0-1-0-licence.md) | CC0-1.0 licence |
+| [0006](./docs/adr/0006-cc0-1-0-licence.md) | CC0-1.0 licence (superseded by 0008) |
 | [0007](./docs/adr/0007-actions-are-pinned-by-digest-and-auto-merged.md) | Actions are pinned by digest and auto-merged |
+| [0008](./docs/adr/0008-mit-replaces-the-cc0-dedication.md) | MIT replaces the CC0-1.0 dedication |
 
 Every one of them follows [0000, the template](./docs/adr/0000-adr-template.md): `# N. Title`, a date, a
 status, then *Context*, *Decision*, *Consequences*. A new ADR starts by copying that file, not by writing

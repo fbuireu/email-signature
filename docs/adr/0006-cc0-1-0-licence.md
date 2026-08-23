@@ -4,7 +4,8 @@ Date: 2026-07-30
 
 ## Status
 
-Accepted.
+Superseded by [ADR 0008](./0008-mit-replaces-the-cc0-dedication.md), which relicenses the
+repository under MIT. The dedication described here still governs every copy taken while it stood.
 
 ## Context
 

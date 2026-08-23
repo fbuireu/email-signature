@@ -15,3 +15,7 @@ those paths are quoted by every email already sent, so they are never renamed or
 - [CONTEXT.md](./CONTEXT.md): domain vocabulary
 - [CLAUDE.md](./CLAUDE.md): working rules, maintenance contract and gotchas
 - [docs/adr/](./docs/adr/): why each irreversible decision was made, and what it cost
+
+## License
+
+[MIT](./LICENSE) © Ferran Buireu. The third-party marks under `assets/images/png/` belong to their owners and are not covered by it ([ADR 0008](./docs/adr/0008-mit-replaces-the-cc0-dedication.md)).
