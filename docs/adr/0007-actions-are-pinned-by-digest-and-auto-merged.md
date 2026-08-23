@@ -22,12 +22,12 @@ Every third-party action is pinned to a **full commit SHA** with the human-reada
 - `major` updates are labelled `major-update` / `review-required` and never merged automatically.
 - `minimumReleaseAge` is **4 days**: nothing is eligible until it has been public long enough for a compromised release to surface.
 - Renovate runs on the 1st and 15th, but `vulnerabilityAlerts` are scheduled `at any time` so security fixes bypass the cadence.
-- `zizmor` (`.github/workflows/zizmor.yml`) statically audits the workflows themselves on every push and pull request, and `permissions:` is declared explicitly per workflow rather than inherited.
+- `zizmor` ([`.github/workflows/zizmor.yml`](../../.github/workflows/zizmor.yml)) statically audits the workflows themselves on every push and pull request, and `permissions:` is declared explicitly per workflow rather than inherited.
 
 ## Consequences
 
 - **A version bump is a two-part edit and the comment is not decorative.** The SHA is what runs; the `# v7.0.0` comment is the only thing making the reference legible. Changing one without the other produces a workflow file that lies about what it executes.
 - The 4-day `minimumReleaseAge` means this repository is deliberately never on the newest release. That is the point, and it is a cost: a genuine fix waits four days too.
 - **Auto-merge is only as safe as the window it leaves.** A malicious patch release that survives four days undetected merges here without a human ever looking at it. The policy accepts that risk for patch and minor; the line is drawn at major, which is a proxy for blast radius rather than for maliciousness, and a poor proxy at that. It was chosen because reviewing everything means reviewing nothing.
-- `.github/workflows/dependabot-auto-merge.yml` exists but there is **no `.github/dependabot.yml`**, so Dependabot is not configured to open version-update pull requests here at all. That workflow currently applies only to the security updates GitHub raises on its own, and Renovate is the bot doing the actual work. Two bots are configured where one is running.
+- [`.github/workflows/dependabot-auto-merge.yml`](../../.github/workflows/dependabot-auto-merge.yml) exists but there is **no `.github/dependabot.yml`**, so Dependabot is not configured to open version-update pull requests here at all. That workflow currently applies only to the security updates GitHub raises on its own, and Renovate is the bot doing the actual work. Two bots are configured where one is running.
 - Auto-approval and auto-merge run on `secrets.PAT` rather than `GITHUB_TOKEN`, because a token cannot approve its own pull request. That PAT is a standing credential with write access, and its expiry is an unmonitored single point of failure: when it lapses, the automation stops silently.

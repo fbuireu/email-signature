@@ -20,7 +20,7 @@
 - [ ] Styling stays in inline `style` attributes; layout stays in nested `<table role="presentation">`
 - [ ] Every `<img>` I touched has a meaningful `alt`
 - [ ] I judged the change in a real mail client, not a browser
-- [ ] If anything visual changed, `assets/images/output/index.png` is regenerated in this same PR
+- [ ] If anything visual changed, [`assets/images/output/index.png`](../assets/images/output/index.png) is regenerated in this same PR
 - [ ] If a link target changed, I checked whether the host belongs in `.lycheeignore` and said why in the commit
 
 ## Mail clients tested

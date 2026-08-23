@@ -11,7 +11,7 @@ Everything here is vocabulary. How the pieces fit together is [ARCHITECTURE.md](
 The domain of a document that renders correctly inside somebody else's mail client. Everything here is about what survives the renderer, not about where the images are hosted.
 
 **Signature**:
-The block of HTML pasted into a mail client's signature setting, and the only thing this context produces. It is a single file, `index.html`, which is simultaneously the source and the artefact ([ADR 0005](./docs/adr/0005-no-build-step.md)): there is no version of it that is not also what gets shipped.
+The block of HTML pasted into a mail client's signature setting, and the only thing this context produces. It is a single file, [`index.html`](./index.html), which is simultaneously the source and the artefact ([ADR 0005](./docs/adr/0005-no-build-step.md)): there is no version of it that is not also what gets shipped.
 _Avoid_: template, email, snippet, footer
 
 **Mail Client**: The program that renders a Signature for a recipient, and the authority this context answers to. It is never a browser: the capability floor is set by Outlook on Windows, which renders with Word's engine ([ADR 0004](./docs/adr/0004-email-clients-dictate-the-markup.md)). "It looks right" always means "in a Mail Client", never "in Chrome".
@@ -32,7 +32,7 @@ _Avoid_: alt tag, fallback text, description, title
 **Contact Link**: An `<a>` in the Signature pairing an Icon with a destination. It comes in two shapes: the labelled kind, where the Icon and a text label sit in adjacent `<span>`s (the phone number and the personal site), and the icon-only kind used for social profiles, where the `<a>` wraps the Icon alone.
 _Avoid_: entry, item, social icon, button
 
-**Preview**: `assets/images/output/index.png`, a screenshot of a rendered Signature taken by hand and shown in the README. It illustrates the product but is not the product, and nothing verifies that it still matches ([ADR 0005](./docs/adr/0005-no-build-step.md)).
+**Preview**: [`assets/images/output/index.png`](./assets/images/output/index.png), a screenshot of a rendered Signature taken by hand and shown in the README. It illustrates the product but is not the product, and nothing verifies that it still matches ([ADR 0005](./docs/adr/0005-no-build-step.md)).
 _Avoid_: render, output, screenshot, example, demo
 
 ---

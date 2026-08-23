@@ -8,7 +8,7 @@ index.
 ## What this is
 
 Two products in one repository ([ADR 0003](./docs/adr/0003-the-signature-and-its-assets-share-one-repository.md)):
-`index.html`, an HTML email signature pasted into a mail client, and `assets/`, a set of public URLs served
+[`index.html`](./index.html), an HTML email signature pasted into a mail client, and `assets/`, a set of public URLs served
 by GitHub raw that every already-sent email still fetches from.
 
 **The second product is the one that can be damaged.** Nothing about it fails loudly, and nothing in CI can
@@ -53,7 +53,7 @@ search, no test and no CI check will find them.
 - **Every `<img>` needs a meaningful `alt`.** Most clients block remote images by default, so the `alt` is
   what recipients see first and the whole fallback if the assets stop being served. An `<img>` without one
   is a defect.
-- Assets are named for what they depict, lowercase and hyphenated (`stack-overflow.png`), and live flat in
+- Assets are named for what they depict, lowercase and hyphenated ([`stack-overflow.png`](./assets/images/png/stack-overflow.png)), and live flat in
   `assets/images/png/`.
 - Judge changes in a **mail client**, never in a browser. Chrome renders markup that Outlook mangles.
 
@@ -61,7 +61,7 @@ search, no test and no CI check will find them.
 
 | If you change | Update |
 | --- | --- |
-| Anything visual in `index.html` | Regenerate `assets/images/output/index.png` and commit it in the same change |
+| Anything visual in `index.html` | Regenerate [`assets/images/output/index.png`](./assets/images/output/index.png) and commit it in the same change |
 | An icon | Add a new Published Path; never edit or rename the old one |
 | A link target | Check whether the host belongs in `.lycheeignore`, and say why in the commit |
 | A domain word's meaning, or introduce one | [`CONTEXT.md`](./CONTEXT.md), vocabulary only |
@@ -103,13 +103,13 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
   ([ADR 0007](./docs/adr/0007-actions-are-pinned-by-digest-and-auto-merged.md)). The SHA is what runs; the
   comment is the only thing making it legible. Updating one without the other leaves a workflow that lies
   about what it executes.
-- **Dependabot is half-configured.** `.github/workflows/dependabot-auto-merge.yml` exists but there is no
+- **Dependabot is half-configured.** [`.github/workflows/dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) exists but there is no
   `.github/dependabot.yml`, so Dependabot opens no version-update pull requests here. Renovate does the
   work; that workflow only ever sees GitHub's own security updates.
 - **The automation runs on `secrets.PAT`**, because a token cannot approve its own pull request. It is a
   standing write credential whose expiry nothing monitors: when it lapses, auto-approve and auto-merge stop
   silently.
-- **In `link-checker.yml`, two paths must agree and nothing checks that they do.** lychee's `output` and the
+- **In [`link-checker.yml`](./.github/workflows/link-checker.yml), two paths must agree and nothing checks that they do.** lychee's `output` and the
   *Create Issue From File* step's `content-filepath` both name `./reports/link-checker-output.md`. Change
   one without the other and issue creation fails on a missing file. It fails silently, because that step
   only ever runs when a link is already broken. Setting `output` explicitly is load-bearing: lychee's own
