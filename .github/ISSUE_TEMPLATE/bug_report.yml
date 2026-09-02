@@ -1,5 +1,5 @@
 name: Bug Report
-description: Report a rendering problem, a broken link, or an asset that stopped working
+description: Report a bug or unexpected behavior in the signature
 title: '[Bug]: '
 labels: ['bug', 'triage']
 assignees: ['fbuireu']
@@ -7,33 +7,51 @@ body:
   - type: markdown
     attributes:
       value: |
-        Thanks for the report! If what you found could harm someone *receiving* an email with this signature (a hijacked link, a tampered asset), please use the Security Policy (linked when you chose a template) instead of a public issue.
-  - type: dropdown
-    id: kind
-    attributes:
-      label: What kind of problem?
-      options:
-        - Rendering (the signature displays wrong in a mail client)
-        - Broken link (a target 404s or redirects wrong)
-        - Asset (an image fails to load or looks wrong)
-        - Other
-    validations:
-      required: true
+        Thanks for taking the time to fill out this bug report! Please provide as much detail as possible.
+
+        Say which mail client renders it wrong, and attach a screenshot: a browser rendering proves nothing here.
   - type: textarea
     id: description
     attributes:
       label: Description
-      description: What is wrong, and where?
+      description: A clear and concise description of what the bug is.
+      placeholder: What happened?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '...'
+        3. See error
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behavior
+      description: What did you expect to happen?
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behavior
+      description: What actually happened?
     validations:
       required: true
   - type: input
-    id: client
+    id: environment
     attributes:
       label: Mail client and OS
-      description: 'For rendering problems: which client, which version, which OS?'
-      placeholder: Outlook 365 on Windows 11, Gmail web on Chrome, Apple Mail on iOS 19...
+      placeholder: Outlook 365 on Windows 11, Gmail web in Chrome, Apple Mail on iOS 26...
+    validations:
+      required: true
   - type: textarea
     id: additional
     attributes:
       label: Additional Context
-      description: Screenshots help enormously here
+      description: Screenshots, logs, console errors, or any other relevant information

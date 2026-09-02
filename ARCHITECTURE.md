@@ -34,7 +34,7 @@ config:
 flowchart LR
     edit["edit index.html<br/>by hand"] --> push["git push main"]
     push --> raw["raw.githubusercontent.com<br/>serves assets/"]
-    push --> ci["link-checker + zizmor"]
+    push --> ci["link-checker + zizmor<br/>+ dependency review"]
     edit --> paste["paste into<br/>mail client"]
     paste --> send["send mail"]
     send --> inbox["recipient's inbox"]
@@ -104,7 +104,7 @@ produces or any CI step asserts, so the only real test is sending the thing to a
 
 ## 5. Automation
 
-Four workflows, no build among them. Every third-party action is pinned to a commit SHA with the version
+Six workflows, no build among them. Every third-party action is pinned to a commit SHA with the version
 as a trailing comment, and updated by Renovate under an automerge policy graded by blast radius
 ([ADR 0007](./docs/adr/0007-actions-are-pinned-by-digest-and-auto-merged.md)).
 
@@ -112,7 +112,8 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 | --- | --- | --- |
 | [`link-checker.yml`](./.github/workflows/link-checker.yml) | push, pull request, manual | Runs lychee with `fail: true`, then opens an issue from the report when it fails. The only check on the delivery path |
 | [`zizmor.yml`](./.github/workflows/zizmor.yml) | push to `main`, any pull request | Statically audits the workflow files themselves; `permissions: {}` at top level, narrowed per job |
-| [`renovate-auto-approve.yml`](./.github/workflows/renovate-auto-approve.yml) | pull request opened/synchronised/reopened/labelled | Approves Renovate pull requests labelled `patch-update`, `minor-update`, `pin-update` or `lock-maintenance`, once |
+| [`commit-message.yml`](./.github/workflows/commit-message.yml) | pull request opened/edited/reopened/synchronised | Lints the pull request title against conventional commits, which is the message a squash merge commits; a pinned action does it, since there is no toolchain here to run commitlint |
+| [`dependency-review.yml`](./.github/workflows/dependency-review.yml) | every pull request | Fails a pull request that introduces an action with a known vulnerability; the actions are this repository's whole supply chain |
 | [`dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor/dev/indirect updates; comments and labels on major |
 
 [`.lycheeignore`](./.lycheeignore) exempts four hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against

@@ -106,9 +106,11 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
 - **Dependabot is half-configured.** [`.github/workflows/dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) exists but there is no
   `.github/dependabot.yml`, so Dependabot opens no version-update pull requests here. Renovate does the
   work; that workflow only ever sees GitHub's own security updates.
-- **The automation runs on `secrets.PAT`**, because a token cannot approve its own pull request. It is a
-  standing write credential whose expiry nothing monitors: when it lapses, auto-approve and auto-merge stop
-  silently.
+- **The Dependabot auto-merge runs on `secrets.PAT`**, the same shared workflow every sibling repository carries, so a
+  merge is the Owner's rather than the workflow identity's. It is a standing write credential whose expiry nothing
+  monitors: when it lapses, that auto-merge stops silently. Renovate needs no such thing: the `main` ruleset requires
+  no approval, only the checks, so its pull requests merge through the platform, and the auto-approve workflow that
+  used to exist for that is gone.
 - **In [`link-checker.yml`](./.github/workflows/link-checker.yml), two paths must agree and nothing checks that they do.** lychee's `output` and the
   *Create Issue From File* step's `content-filepath` both name `./reports/link-checker-output.md`. Change
   one without the other and issue creation fails on a missing file. It fails silently, because that step
