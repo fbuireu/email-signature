@@ -29,7 +29,6 @@ it.
 ---
 config:
   look: handDrawn
-  theme: neutral
 ---
 flowchart LR
     edit["edit index.html<br/>by hand"] --> push["git push main"]
@@ -40,8 +39,8 @@ flowchart LR
     send --> inbox["recipient's inbox"]
     raw -->|"fetched at read time,<br/>forever"| inbox
 
-    classDef frozen fill:#9b2530,stroke:#d73a49,stroke-width:2px,color:#fff
-    classDef free fill:#8a6a0f,stroke:#dfb317,stroke-width:2px,color:#fff
+    classDef frozen stroke:#d73a49,stroke-width:3px
+    classDef free stroke:#dfb317,stroke-width:3px
     class raw,send,inbox frozen
     class edit,paste,ci free
 ```
