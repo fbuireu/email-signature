@@ -12,7 +12,7 @@ Accepted. Supersedes [ADR 0006](./0006-cc0-1-0-licence.md).
 that a signature template is too small to be worth an obligation, and that an attribution clause nobody honours
 is worse than no clause at all.
 
-Two things pull the other way. The first is consistency: every other repository under this account is licensed,
+Things pull the other way. The first is consistency: every other repository under this account is licensed,
 not dedicated, and a reader who checks one licence expects the next to work the same way. The second is the
 warranty disclaimer. CC0 waives copyright and offers no warranty language of its own beyond a short paragraph;
 MIT states the disclaimer plainly, which is what a reuser pasting markup into a mail client is actually reading

@@ -8,11 +8,11 @@ Accepted.
 
 ## Context
 
-This repository has no runtime dependencies ([ADR 0005](./0005-no-build-step.md)), so its entire supply chain is the set of third-party GitHub Actions its six workflows call: `actions/checkout`, `lycheeverse/lychee-action`, `peter-evans/create-issue-from-file`, `dependabot/fetch-metadata`, `zizmorcore/zizmor-action`, `actions/dependency-review-action` and `amannn/action-semantic-pull-request`. Those actions run with a token in a repository whose contents are, per [ADR 0002](./0002-published-asset-paths-are-immutable.md), promises made to already-sent mail.
+This repository has no runtime dependencies ([ADR 0005](./0005-no-build-step.md)), so its entire supply chain is the set of third-party GitHub Actions its the workflows here call: `actions/checkout`, `lycheeverse/lychee-action`, `peter-evans/create-issue-from-file`, `dependabot/fetch-metadata`, `zizmorcore/zizmor-action`, `actions/dependency-review-action` and `amannn/action-semantic-pull-request`. Those actions run with a token in a repository whose contents are, per [ADR 0002](./0002-published-asset-paths-are-immutable.md), promises made to already-sent mail.
 
 The standard `uses: actions/checkout@v7` is a **mutable** reference: the tag can be repointed at any commit at any time, so a compromised upstream account can change what runs here without any change landing in this repository. Pinning to a digest closes that, at the cost of an unreadable reference that only a bot can sensibly maintain. Once a bot is opening those pull requests every fortnight, a human reviewing each one by hand is a review that degrades into rubber-stamping within a month.
 
-That is the real tension: pinning demands automation to stay current, and automation is precisely the thing that would merge a malicious update unattended. The two mitigations that make it survivable are that a digest cannot be silently repointed (a new digest is a visible diff) and that a compromised release is usually discovered within days of publication.
+That is the real tension: pinning demands automation to stay current, and automation is precisely the thing that would merge a malicious update unattended. The the mitigations that make it survivable are that a digest cannot be silently repointed (a new digest is a visible diff) and that a compromised release is usually discovered within days of publication.
 
 ## Decision
 

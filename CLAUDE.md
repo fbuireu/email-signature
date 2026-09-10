@@ -18,7 +18,7 @@ see the inboxes that would break.
 
 None. No package manager, no lockfile, no dependencies, no build, no tests, no local dev server
 ([ADR 0005](./docs/adr/0005-no-build-step.md)). `index.html` is source and artefact at once; cloning gives a
-complete working copy. The only automation is four GitHub Actions workflows, none of which builds anything.
+complete working copy. The only automation is a handful of GitHub Actions workflows, none of which builds anything.
 
 There is nothing to run. Verification is opening `index.html`, and, for anything that changes rendering,
 sending it to a real mail client.
@@ -70,7 +70,7 @@ search, no test and no CI check will find them.
 | A decision an ADR records | that ADR: amend it, or supersede it with a new one and say so in both `## Status` blocks |
 
 Propose an ADR in [`docs/adr/`](./docs/adr/) when a decision is **hard to reverse**, **surprising without
-context** and **the result of a real trade-off**. All three, or it is not an ADR. Copy
+context** and **the result of a real trade-off**. All of them, or it is not an ADR. Copy
 [ADR 0000](./docs/adr/0000-adr-template.md), number it one above the highest existing file, add it to the
 index in [`ARCHITECTURE.md`](./ARCHITECTURE.md), and link it from wherever it bites; an ADR only the index
 points at will not be read.
@@ -79,7 +79,7 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
 
 ## Gotchas
 
-- **Unbalanced tags cancel out and pass every count.** Two defects (an extra `</span>` in the phone link
+- **Unbalanced tags cancel out and pass every count.** A pair of defects (an extra `</span>` in the phone link
   and a missing one in the website link) survived here for over a year because the document-level totals
   matched (11 open, 11 close). Inside an `<a>`, Word's engine leaks the unclosed style into the rest of the
   block. Check balance *per element*, never per file.
@@ -96,7 +96,7 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
   with no failing check anywhere.
 - **The avatar is not in this repository.** It is fetched from `avatars.githubusercontent.com`, so it
   changes whenever the GitHub profile picture changes, with no commit here.
-- **Four hosts are never link-checked.** Reddit, Medium, Unsplash and LinkedIn sit in `.lycheeignore`
+- **Some hosts are never link-checked.** Reddit, Medium, Unsplash and LinkedIn sit in `.lycheeignore`
   because they defend against bots and answer CI with `403` or another `4xx`, not because the links are
   broken. If one of those dies for real, nothing notices, ever.
 - **A pinned action's SHA and its version comment must move together**

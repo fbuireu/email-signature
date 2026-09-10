@@ -66,7 +66,7 @@ _Avoid_: allowlist, exception, skipped link, false positive
 
 ## Terms that cross the boundary
 
-Three words mean different things depending on which product is being discussed, and each has caused, or is likely to cause, the wrong instinct:
+Some words mean different things depending on which product is being discussed, and each has caused, or is likely to cause, the wrong instinct:
 
 | Word | In the Signature context | In the Distribution context |
 | --- | --- | --- |

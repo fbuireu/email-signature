@@ -19,7 +19,7 @@ attached to each. They are siblings, neither subordinate to the other
 | Fails by | Rendering wrong in Outlook | A path going missing |
 | Failure is visible | Immediately, to the sender | Never, to anyone who can fix it |
 
-That last row is the whole reason the second column needs rules. A broken Signature is noticed the first
+That last row is the whole reason the Distribution column needs rules. A broken Signature is noticed the first
 time it is sent; a broken Published Path is noticed only by strangers reading old mail, who will not report
 it.
 
@@ -49,7 +49,7 @@ Gold is reversible, red is not. The single arrow that makes this repository unus
 to `inbox`: it is traversed every time somebody opens an old email, long after the commit that published
 the file, and it is the only dependency here that cannot be updated, versioned or deprecated.
 
-Two consequences follow directly and are worth stating before anything else:
+Consequences follow directly and are worth stating before anything else:
 
 - **A push to `main` is a publication.** There is no deploy step to hold anything back
   ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)), so an accidental push cannot be taken back
@@ -72,7 +72,7 @@ Its structure, top to bottom:
 | Wrapper table (`width="550"`) | Everything. Fixed width, since mail clients do not do responsive reliably |
 | Left cell | The avatar, 120px, circular via `border-radius`, fetched from GitHub's avatar service |
 | Right cell, rows 1–2 | Name, then role and employer, with a `border-bottom` acting as a rule |
-| Right cell, rows 3–4 | Phone and personal site: the two Contact Links with generic icons |
+| Right cell, rows 3–4 | Phone and personal site: the Contact Links with generic icons |
 | Right cell, final row | A row of social Contact Links, each an icon-only `<a>` in its own cell |
 
 Every `<img>` carries an `alt`, and that is load-bearing rather than polite: mail clients block remote
@@ -103,7 +103,7 @@ produces or any CI step asserts, so the only real test is sending the thing to a
 
 ## 5. Automation
 
-Six workflows, no build among them. Every third-party action is pinned to a commit SHA with the version
+The workflows carry no build among them. Every third-party action is pinned to a commit SHA with the version
 as a trailing comment, and updated by Renovate under an automerge policy graded by blast radius
 ([ADR 0007](./docs/adr/0007-actions-are-pinned-by-digest-and-auto-merged.md)).
 
@@ -115,7 +115,7 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 | [`dependency-review.yml`](./.github/workflows/dependency-review.yml) | every pull request | Fails a pull request that introduces an action with a known vulnerability; the actions are this repository's whole supply chain |
 | [`dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor/dev/indirect updates; comments and labels on major |
 
-[`.lycheeignore`](./.lycheeignore) exempts four hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
+[`.lycheeignore`](./.lycheeignore) exempts a handful of hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
 bots and answer CI with `403` or another `4xx`. Those links are therefore never verified at all: if one
 dies for real, nothing notices.
 
