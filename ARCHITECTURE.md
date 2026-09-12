@@ -98,9 +98,10 @@ lockfile, no dependencies; cloning gives a complete working copy, and the only "
 
 The Preview, [`assets/images/output/index.png`](./assets/images/output/index.png), is likewise a hand-taken screenshot uploaded by hand. It is
 shown in the README and nothing checks that it still matches the Signature; keeping it in step is a human
-obligation, recorded in [CLAUDE.md](./CLAUDE.md). It has been honoured once in two: the Preview has a single
-commit, the one that first brought the Signature in, and the span-balance fix that followed did not touch
-it. Whether it needed to is not knowable from here, which is the point of the obligation.
+obligation, recorded in [CLAUDE.md](./CLAUDE.md). It has not been honoured since the start: the Preview has a
+single commit, the one that first brought the Signature in, and every later edit to `index.html` has left it
+untouched. Those edits were tag-balance fixes, so the drift may be nil, but whether it is cannot be known
+from here, which is the point of the obligation.
 
 Correctness here cannot be automated in any case. "Renders in Outlook" is not a property any generator
 produces or any CI step asserts, so the only real test is sending the thing to a real client.
