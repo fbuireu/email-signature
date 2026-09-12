@@ -67,13 +67,16 @@ it is not a web page.
 
 Its structure, top to bottom:
 
+The wrapper table (`width="550"`) holds everything in four rows, fixed width because mail clients do not do
+responsive reliably. Its first row is a two-cell block; the other three are full-width bands under it.
+
 | Region | Holds |
 | --- | --- |
-| Wrapper table (`width="550"`) | Everything. Fixed width, since mail clients do not do responsive reliably |
-| Left cell | The avatar, 120px, circular via `border-radius`, fetched from GitHub's avatar service |
-| Right cell, rows 1–2 | Name, then role and employer, with a `border-bottom` acting as a rule |
-| Right cell, rows 3–4 | Phone and personal site: the Contact Links with generic icons |
-| Right cell, final row | A row of social Contact Links, each an icon-only `<a>` in its own cell |
+| Row 1, left cell | The avatar, 120px, circular via `border-radius`, fetched from GitHub's avatar service |
+| Row 1, right cell | Four rows: name; role and employer, with a `border-bottom` acting as a rule; then phone and personal site, the two labelled Contact Links |
+| Row 2 | The social Contact Links, each an icon-only `<a>` in its own cell |
+| Row 3 | The GitHub link: a labelled Contact Link built as two cells on a dark background, icon then text, rather than as adjacent `<span>`s |
+| Row 4 | The confidentiality notice, in English and Spanish |
 
 Every `<img>` carries an `alt`, and that is load-bearing rather than polite: mail clients block remote
 images by default, so the Alt Text is what most recipients see first, and it is the entire fallback if the
@@ -95,8 +98,9 @@ lockfile, no dependencies; cloning gives a complete working copy, and the only "
 
 The Preview, [`assets/images/output/index.png`](./assets/images/output/index.png), is likewise a hand-taken screenshot uploaded by hand. It is
 shown in the README and nothing checks that it still matches the Signature; keeping it in step is a human
-obligation, recorded in [CLAUDE.md](./CLAUDE.md). In practice it has been honoured: both times the
-Signature changed, the Preview followed within four minutes.
+obligation, recorded in [CLAUDE.md](./CLAUDE.md). It has been honoured once in two: the Preview has a single
+commit, the one that first brought the Signature in, and the span-balance fix that followed did not touch
+it. Whether it needed to is not knowable from here, which is the point of the obligation.
 
 Correctness here cannot be automated in any case. "Renders in Outlook" is not a property any generator
 produces or any CI step asserts, so the only real test is sending the thing to a real client.

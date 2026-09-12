@@ -29,7 +29,7 @@ _Avoid_: logo, glyph, image, symbol, badge
 **Alt Text**: The `alt` attribute on an Icon, and part of the visible design rather than an accessibility extra: most Mail Clients block remote images by default, so on first read the Alt Text *is* the Icon. It is also the entire fallback if the assets ever stop being served.
 _Avoid_: alt tag, fallback text, description, title
 
-**Contact Link**: An `<a>` in the Signature pairing an Icon with a destination. It comes in two shapes: the labelled kind, where the Icon and a text label sit in adjacent `<span>`s (the phone number and the personal site), and the icon-only kind used for social profiles, where the `<a>` wraps the Icon alone.
+**Contact Link**: An `<a>` in the Signature pairing an Icon with a destination. It comes in three shapes: labelled through adjacent `<span>`s (the phone number and the personal site), icon-only for the social profiles, where the `<a>` wraps the Icon alone, and labelled through adjacent table cells on a filled background (the GitHub link), the only one whose label carries a colour of its own.
 _Avoid_: entry, item, social icon, button
 
 **Preview**: [`assets/images/output/index.png`](./assets/images/output/index.png), a screenshot of a rendered Signature taken by hand and shown in the README. It illustrates the product but is not the product, and nothing verifies that it still matches ([ADR 0005](./docs/adr/0005-no-build-step.md)).

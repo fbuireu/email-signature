@@ -118,6 +118,16 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
   default is `lychee/out.md`, so dropping the input restores the bug. This was the real state of the workflow until it
   was fixed, and it had never once been exercised.
 
+## Known defects
+
+Open, in the Signature as it stands. Fix and delete the entry: deleting it is part of the fix.
+
+- **The disclaimer band's top padding is silently dropped.** The `<td>` wrapping the confidentiality notice
+  asks for `padding: 10 0px 0px 0px !important`, with no unit on the first value, so every engine discards
+  the whole declaration and the band sits flush against the GitHub link. Adding the `px` moves the layout by
+  10px, which makes it a visual change and therefore one to judge in a mail client and land with a new
+  Preview.
+
 ## Repository identity is part of the contract
 
 Owner, repository name, default branch and public visibility all appear inside the published URLs. Renaming
