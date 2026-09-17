@@ -67,13 +67,13 @@ it is not a web page.
 
 Its structure, top to bottom:
 
-The wrapper table (`width="550"`) holds everything in four rows, fixed width because mail clients do not do
-responsive reliably. Its first row is a two-cell block; the other three are full-width bands under it.
+The wrapper table (`width="550"`) holds everything in a stack of rows, fixed width because mail clients do
+not do responsive reliably. Its first row is a two-cell block; the rows under it are full-width bands.
 
 | Region | Holds |
 | --- | --- |
 | Row 1, left cell | The avatar, 120px, circular via `border-radius`, fetched from GitHub's avatar service |
-| Row 1, right cell | Four rows: name; role and employer, with a `border-bottom` acting as a rule; then phone and personal site, the two labelled Contact Links |
+| Row 1, right cell | A stack of nested rows: name; role and employer, with a `border-bottom` acting as a rule; then phone and personal site, the two labelled Contact Links |
 | Row 2 | The social Contact Links, each an icon-only `<a>` in its own cell |
 | Row 3 | The GitHub link: a labelled Contact Link built as two cells on a dark background, icon then text, rather than as adjacent `<span>`s |
 | Row 4 | The confidentiality notice, in English and Spanish |
