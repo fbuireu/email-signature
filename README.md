@@ -13,7 +13,7 @@ those paths are quoted by every email already sent, so they are never renamed or
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md): the two products, the delivery path, and the index of decisions
 - [CONTEXT.md](./CONTEXT.md): domain vocabulary
-- [CLAUDE.md](./CLAUDE.md): working rules, maintenance contract and gotchas
+- [AGENTS.md](./AGENTS.md): working rules, maintenance contract and gotchas
 - [docs/adr/](./docs/adr/): why each irreversible decision was made, and what it cost
 
 ## License

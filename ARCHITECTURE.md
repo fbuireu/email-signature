@@ -1,7 +1,7 @@
 # Architecture
 
 How this repository is put together and why. What it *is* is the [README](./README.md); the vocabulary is
-[CONTEXT.md](./CONTEXT.md); how to work in it is [CLAUDE.md](./CLAUDE.md). This document does not restate
+[CONTEXT.md](./CONTEXT.md); how to work in it is [AGENTS.md](./AGENTS.md). This document does not restate
 them.
 
 ## 1. Two products
@@ -98,7 +98,7 @@ lockfile, no dependencies; cloning gives a complete working copy, and the only "
 
 The Preview, [`assets/images/output/index.png`](./assets/images/output/index.png), is likewise a hand-taken screenshot uploaded by hand. It is
 shown in the README and nothing checks that it still matches the Signature; keeping it in step is a human
-obligation, recorded in [CLAUDE.md](./CLAUDE.md). It has not been honoured since the start: the Preview has a
+obligation, recorded in [AGENTS.md](./AGENTS.md). It has not been honoured since the start: the Preview has a
 single commit, the one that first brought the Signature in, and every later edit to `index.html` has left it
 untouched. Those edits were tag-balance fixes, so the drift may be nil, but whether it is cannot be known
 from here, which is the point of the obligation.
@@ -153,5 +153,5 @@ context** and **the result of a real trade-off**.
 | [README.md](./README.md) | What this is, and the Preview |
 | [CONTEXT.md](./CONTEXT.md) | Domain vocabulary, split into the two contexts of §1 |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | This file: the two products, the delivery path, the ADR index |
-| [CLAUDE.md](./CLAUDE.md) | Working rules, the maintenance contract, gotchas |
+| [AGENTS.md](./AGENTS.md) | Working rules, the maintenance contract, gotchas |
 | [docs/adr/](./docs/adr/) | Why each irreversible decision was made, and what it cost |

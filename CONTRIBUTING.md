@@ -7,7 +7,7 @@ problem in a mail client, an accessibility gap. Anything bigger, open an issue
 first.
 
 If you want the shape of the repo, that is [ARCHITECTURE.md](./ARCHITECTURE.md).
-The working rules are [CLAUDE.md](./CLAUDE.md); the vocabulary is
+The working rules are [AGENTS.md](./AGENTS.md); the vocabulary is
 [CONTEXT.md](./CONTEXT.md); the *why* is [docs/adr/](./docs/adr/).
 
 ## Code of Conduct

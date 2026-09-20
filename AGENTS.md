@@ -1,4 +1,4 @@
-# CLAUDE.md
+# AGENTS.md
 
 Agent-facing guide for **email-signature**. See [CONTEXT.md](./CONTEXT.md) for the domain vocabulary
 (Signature, Published Path, Supersession, Sent Mail…) and do not duplicate it here.

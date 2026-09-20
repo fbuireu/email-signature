@@ -2,7 +2,7 @@
 
 This repository holds two products with different obligations ([ADR 0003](./docs/adr/0003-the-signature-and-its-assets-share-one-repository.md)), and they do not share a language. The **Signature** context is about a document that has to survive a hostile renderer; the **Distribution** context is about public URLs that have to survive being quoted in mail nobody can edit any more. The same English word means different things on either side of that line, so the two are stated separately and the crossing terms are named at the end.
 
-Everything here is vocabulary. How the pieces fit together is [ARCHITECTURE.md](./ARCHITECTURE.md); why they are the way they are is [docs/adr/](./docs/adr/); how to work on them is [CLAUDE.md](./CLAUDE.md).
+Everything here is vocabulary. How the pieces fit together is [ARCHITECTURE.md](./ARCHITECTURE.md); why they are the way they are is [docs/adr/](./docs/adr/); how to work on them is [AGENTS.md](./AGENTS.md).
 
 ---
 
