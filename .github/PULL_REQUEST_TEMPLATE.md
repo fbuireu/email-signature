@@ -50,7 +50,7 @@
 - [ ] Every `<img>` I touched has a meaningful `alt`
 - [ ] If anything visual changed, [`assets/images/output/index.png`](../assets/images/output/index.png) is regenerated in this same PR
 - [ ] If a link target changed, I checked whether the host belongs in [`.lycheeignore`](../.lycheeignore) and said why in the commit
-- [ ] I updated [`CONTEXT.md`](../CONTEXT.md), [`CLAUDE.md`](../CLAUDE.md), [`ARCHITECTURE.md`](../ARCHITECTURE.md) or the ADRs if my change affects them, in this same PR
+- [ ] I updated [`CONTEXT.md`](../CONTEXT.md), [`AGENTS.md`](../AGENTS.md), [`ARCHITECTURE.md`](../ARCHITECTURE.md) or the ADRs if my change affects them, in this same PR
 
 ## Additional Notes
 
