@@ -18,11 +18,11 @@ That is the real tension: pinning demands automation to stay current, and automa
 
 Every third-party action is pinned to a **full commit SHA** with the human-readable version as a trailing comment, and Renovate keeps those digests current under an automerge policy calibrated by blast radius:
 
-- `pin`, `pinDigest`, `digest`, `patch`, `minor` and lock-file maintenance updates are approved and squash-merged unattended.
-- `major` updates are labelled `major-update` / `review-required` and never merged automatically.
+- `pin`, `pinDigest`, `digest`, `patch`, `minor` and lock-file maintenance updates are squash-merged unattended.
+- `major` updates are labelled `major-update` and never merged automatically.
 - `minimumReleaseAge` is **4 days**: nothing is eligible until it has been public long enough for a compromised release to surface.
 - Renovate runs on the 1st and 15th, but `vulnerabilityAlerts` are scheduled `at any time` so security fixes bypass the cadence.
-- `zizmor` ([`.github/workflows/zizmor.yml`](../../.github/workflows/zizmor.yml)) statically audits the workflows themselves on every push and pull request, and `permissions:` is declared explicitly per workflow rather than inherited.
+- `zizmor` ([`.github/workflows/zizmor.yml`](../../.github/workflows/zizmor.yml)) statically audits the workflows themselves on every push to `main` and every pull request, and `permissions:` is declared explicitly per workflow rather than inherited.
 
 ## Consequences
 

@@ -18,7 +18,7 @@ A real object store behind a CDN (S3 + CloudFront, R2, Cloudinary) was the obvio
 
 Every image the Signature owns is served straight out of this repository on `main`, over GitHub's own hosting. There is no CDN account, no bucket and no upload step: pushing to `main` publishes. The managed-CDN alternative is rejected on operational cost rather than on technical merit: the guarantee it buys is not worth the standing maintenance it imposes at this scale.
 
-Two URL forms are in use, and they are not equivalent. The direct `raw.githubusercontent.com/<owner>/<repo>/main/…` form is the canonical one. The `github.com/<owner>/<repo>/blob/main/…?raw=true` form, used by the social icons, resolves to the same bytes only by redirect, an extra hop that some mail clients' image proxies handle less predictably than a direct fetch. New assets use the direct form; the existing ones are not rewritten, because both are already published and neither may be repointed ([ADR 0002](./0002-published-asset-paths-are-immutable.md)).
+Two URL forms are in use, and they are not equivalent. The direct `raw.githubusercontent.com/<owner>/<repo>/main/…` form is the canonical one. The `github.com/<owner>/<repo>/blob/main/…?raw=true` form, used by the social icons and the GitHub link's, resolves to the same bytes only by redirect, an extra hop that some mail clients' image proxies handle less predictably than a direct fetch. New assets use the direct form; the existing ones are not rewritten, because both are already published and neither may be repointed ([ADR 0002](./0002-published-asset-paths-are-immutable.md)).
 
 ## Consequences
 

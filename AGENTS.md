@@ -86,7 +86,7 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
 - **"Unused asset" is a meaningless signal.** A file `index.html` no longer references may be the only thing
   standing between an old email and a broken image. `assets/images/png/` already contains icons the current
   Signature does not use, and that is the expected state, not debt. Never clean this directory.
-- **Two URL forms are in use and they are not equivalent.** The social icons are referenced as
+- **Two URL forms are in use and they are not equivalent.** The social icons and the GitHub link's are referenced as
   `github.com/…/blob/main/…?raw=true`, which reaches the bytes only by redirect; the phone and website icons
   use the direct `raw.githubusercontent.com/…` form. Write new references in the direct form, and do not
   "tidy" the existing ones: both are already published, and repointing either is forbidden
