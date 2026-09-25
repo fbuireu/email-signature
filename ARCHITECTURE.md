@@ -19,7 +19,7 @@ attached to each. They are siblings, neither subordinate to the other
 | Fails by | Rendering wrong in Outlook | A path going missing |
 | Failure is visible | Immediately, to the sender | Never, to anyone who can fix it |
 
-That last row is the whole reason the Distribution column needs rules. A broken Signature is noticed the first
+That last row is the whole reason the asset store column needs rules. A broken Signature is noticed the first
 time it is sent; a broken Published Path is noticed only by strangers reading old mail, who will not report
 it.
 
@@ -86,8 +86,8 @@ The avatar is the one image **not** served from this repository. It comes from
 `avatars.githubusercontent.com`, so it changes whenever the GitHub profile picture changes, without a
 commit here. That is convenient and entirely outside this repository's control.
 
-The repository's own icons are referenced in two different URL forms: the social ones via a
-`github.com/…/blob/…?raw=true` redirect, the rest directly from `raw.githubusercontent.com`. Both are
+The repository's own icons are referenced in two different URL forms: the social ones and the GitHub link's via a
+`github.com/…/blob/…?raw=true` redirect, the phone and website ones directly from `raw.githubusercontent.com`. Both are
 published and neither can now be changed ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)).
 
 ## 4. There is no build
