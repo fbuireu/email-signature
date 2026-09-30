@@ -29,6 +29,7 @@ it.
 ---
 config:
   look: handDrawn
+  layout: dagre
 ---
 flowchart LR
     edit["edit index.html<br/>by hand"] --> push["git push main"]
