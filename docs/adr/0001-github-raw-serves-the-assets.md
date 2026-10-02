@@ -4,7 +4,7 @@ Date: 2026-07-30
 
 ## Status
 
-Accepted.
+Accepted. Amended 2026-10-02: the link checker no longer requests the `blob` form of the asset URLs.
 
 ## Context
 
@@ -26,4 +26,4 @@ Two URL forms are in use, and they are not equivalent. The direct `raw.githubuse
 - Cache behaviour is whatever GitHub decides. An image replaced in place may be served stale for an unknown period, which is one of the reasons paths are append-only instead ([ADR 0002](./0002-published-asset-paths-are-immutable.md)).
 - Assets must live in a **public** repository for the URLs to resolve without credentials. Making this repository private would break every sent email; that is a constraint on the repository itself, not just on its contents.
 - Because the host is fixed and baked into sent mail, splitting the assets into their own repository stops being a free refactor ([ADR 0003](./0003-the-signature-and-its-assets-share-one-repository.md)).
-- [`.github/workflows/link-checker.yml`](../../.github/workflows/link-checker.yml) verifies these URLs on every push, and is the only automated evidence that the delivery path still works.
+- [`.github/workflows/link-checker.yml`](../../.github/workflows/link-checker.yml) verifies the `raw.githubusercontent.com` URLs on every push, and is the only automated evidence that the delivery path still works. The `github.com/…/blob/main/assets/` URLs sit in [`.lycheeignore`](../../.lycheeignore), because github.com answers a burst of them with `503`; a file behind one of those is guarded by review against [ADR 0002](./0002-published-asset-paths-are-immutable.md), not by the checker.

@@ -15,7 +15,7 @@ No rule below restates these, and a diff that breaks one fails CI:
 - The pull request title, a Conventional Commit, linted by
   [`commit-message.yml`](./.github/workflows/commit-message.yml).
 - Every link the documents and the Signature carry, resolved by lychee in
-  [`link-checker.yml`](./.github/workflows/link-checker.yml), bar the hosts
+  [`link-checker.yml`](./.github/workflows/link-checker.yml), bar what
   [`.lycheeignore`](./.lycheeignore) names.
 - zizmor's audit of the workflows ([`zizmor.yml`](./.github/workflows/zizmor.yml)).
 

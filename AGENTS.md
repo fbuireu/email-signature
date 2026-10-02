@@ -92,6 +92,11 @@ decision earns one and where to link it from.
 - **Some hosts are never link-checked.** Reddit, Medium, Unsplash and LinkedIn sit in `.lycheeignore`
   because they defend against bots and answer CI with `403` or another `4xx`, not because the links are
   broken. If one of those dies for real, nothing notices, ever.
+- **This repository's own assets are checked only in the direct form.** `.lycheeignore` also names the
+  `github.com/fbuireu/email-signature/blob/main/assets/` URLs, because github.com answers a burst of them
+  with `503` and fails a run with nothing broken. The `raw.githubusercontent.com` URLs are still checked;
+  a renamed or deleted file behind a `blob` URL is caught only by review, against
+  [ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md).
 - **Dependabot is half-configured.** [`.github/workflows/dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) exists but there is no
   `.github/dependabot.yml`, so Dependabot opens no version-update pull requests here. Renovate does the
   work; that workflow only ever sees GitHub's own security updates.
