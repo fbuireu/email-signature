@@ -123,7 +123,9 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 
 [`.lycheeignore`](./.lycheeignore) exempts a handful of hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
 bots and answer CI with `403` or another `4xx`. Those links are therefore never verified at all: if one
-dies for real, nothing notices.
+dies for real, nothing notices. It also exempts this repository's own assets in the
+`github.com/…/blob/main/assets/` form, which github.com answers with `503` when lychee asks for several at
+once; the assets are still verified through their `raw.githubusercontent.com` URLs.
 
 Renovate is the bot doing the work ([`.github/renovate.json`](./.github/renovate.json): digest pinning, a four-day `minimumReleaseAge`,
 runs on the 1st and 15th, vulnerability alerts at any time). Dependabot has an auto-merge workflow but **no
