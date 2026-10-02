@@ -5,6 +5,8 @@ Agent-facing guide for **email-signature**. See [CONTEXT.md](./CONTEXT.md) for t
 [ARCHITECTURE.md](./ARCHITECTURE.md) is the big picture: the two products, the delivery path and the ADR
 index.
 
+Reviewing a diff: [CODING_STANDARDS.md](./CODING_STANDARDS.md).
+
 ## What this is
 
 Two products in one repository ([ADR 0003](./docs/adr/0003-the-signature-and-its-assets-share-one-repository.md)):
@@ -37,60 +39,51 @@ From that follows the rule that governs `assets/`
 
 Change an image by *adding* a new path and updating `index.html` to reference it. The old file stays. This
 is the opposite of the normal instinct: the callers that would break are not in this repository, so no
-search, no test and no CI check will find them.
+search, no test and no CI check will find them. The Preview, `assets/images/output/index.png`, is the one
+exception: no Signature quotes it, so it is replaced in place.
+
+## Writing the markup
+
+`index.html` is written to the capability floor of Outlook on Windows: nested presentation tables, inline
+styles, PNG icons and a meaningful `alt` on every image
+([ADR 0004](./docs/adr/0004-email-clients-dictate-the-markup.md)). Read that ADR before editing the markup.
+Judge a change in a **mail client**, never in a browser: Chrome renders markup that Outlook mangles.
 
 ## Conventions
 
-- **Inline `style` attributes only.** Never add a `<style>` block, an external stylesheet, or class-based
-  styling; mail clients strip them ([ADR 0004](./docs/adr/0004-email-clients-dictate-the-markup.md)).
-  `class="wrapper"` in the markup is an inert label, not a hook.
-- **Layout is nested `<table role="presentation">`.** No `float`, `flex`, `grid` or `position`: Outlook on
-  Windows renders with Word's engine and supports none of them.
-- **Repetition is correct.** The same declarations recur across elements because there is nowhere to share
-  them. Factoring them out is the failure mode, not the fix.
-- **PNG icons at fixed pixel sizes.** No SVG, no icon fonts, no CSS-drawn shapes; none render in an email
-  body.
-- **Every `<img>` needs a meaningful `alt`.** Most clients block remote images by default, so the `alt` is
-  what recipients see first and the whole fallback if the assets stop being served. An `<img>` without one
-  is a defect.
-- Assets are named for what they depict, lowercase and hyphenated ([`stack-overflow.png`](./assets/images/png/stack-overflow.png)), and live flat in
-  [`assets/images/png/`](./assets/images/png).
-- Judge changes in a **mail client**, never in a browser. Chrome renders markup that Outlook mangles.
+- **Conventional commits**, on the pull request title that a squash merge commits, linted by
+  [`commit-message.yml`](./.github/workflows/commit-message.yml). Do NOT add a Co-Authored-By / Claude trailer to
+  commits or PRs.
 
 ## Maintenance contract
+
+These documents are not generated. When you change code, update the docs **in the same commit**: a follow-up commit
+is a promise, not a fix.
 
 | If you change | Update |
 | --- | --- |
 | Anything visual in `index.html` | Regenerate [`assets/images/output/index.png`](./assets/images/output/index.png) and commit it in the same change |
 | An icon | Add a new Published Path; never edit or rename the old one |
 | A link target | Check whether the host belongs in [`.lycheeignore`](./.lycheeignore), and say why in the commit |
-| A domain word's meaning, or introduce one | [`CONTEXT.md`](./CONTEXT.md), vocabulary only |
+| What a domain word means, or introduce a new one | [`CONTEXT.md`](./CONTEXT.md): the glossary, vocabulary only |
+| A rule about how code is written: the markup, the assets, the workflows | [`CODING_STANDARDS.md`](./CODING_STANDARDS.md) |
 | The delivery path, the workflows, or the file structure | [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 | A behaviour a doc states as an invariant or a gotcha | that bullet, or delete it if it stopped being true |
 | A decision an ADR records | that ADR: amend it, or supersede it with a new one and say so in both `## Status` blocks |
 
-Propose an ADR in [`docs/adr/`](./docs/adr/) when a decision is **hard to reverse**, **surprising without
-context** and **the result of a real trade-off**. All of them, or it is not an ADR. Copy
-[ADR 0000](./docs/adr/0000-adr-template.md), number it one above the highest existing file, add it to the
-index in [`ARCHITECTURE.md`](./ARCHITECTURE.md), and link it from wherever it bites; an ADR only the index
-points at will not be read.
-
-Prefer naming what you mean over citing a line: `index.html:51` rots the moment anything above it moves.
+A new ADR starts as a copy of [ADR 0000](./docs/adr/0000-adr-template.md), the template, which says when a
+decision earns one and where to link it from.
 
 ## Gotchas
 
-- **Unbalanced tags cancel out and pass every count.** A pair of defects (an extra `</span>` in the phone link
-  and a missing one in the website link) survived here for over a year because the document-level totals
-  matched (11 open, 11 close). Inside an `<a>`, Word's engine leaks the unclosed style into the rest of the
-  block. Check balance *per element*, never per file.
 - **"Unused asset" is a meaningless signal.** A file `index.html` no longer references may be the only thing
   standing between an old email and a broken image. `assets/images/png/` already contains icons the current
   Signature does not use, and that is the expected state, not debt. Never clean this directory.
 - **Two URL forms are in use and they are not equivalent.** The social icons and the GitHub link's are referenced as
   `github.com/…/blob/main/…?raw=true`, which reaches the bytes only by redirect; the phone and website icons
-  use the direct `raw.githubusercontent.com/…` form. Write new references in the direct form, and do not
-  "tidy" the existing ones: both are already published, and repointing either is forbidden
-  ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)).
+  use the direct `raw.githubusercontent.com/…` form. Both are published, so neither is rewritten
+  ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)); the form a new reference takes is in
+  [CODING_STANDARDS.md](./CODING_STANDARDS.md).
 - **The Preview is not generated.** `assets/images/output/index.png` is a hand-taken screenshot uploaded by
   hand. Nothing checks it matches the Signature, and a stale one misrepresents the product on the README
   with no failing check anywhere.
@@ -99,24 +92,18 @@ Prefer naming what you mean over citing a line: `index.html:51` rots the moment 
 - **Some hosts are never link-checked.** Reddit, Medium, Unsplash and LinkedIn sit in `.lycheeignore`
   because they defend against bots and answer CI with `403` or another `4xx`, not because the links are
   broken. If one of those dies for real, nothing notices, ever.
-- **A pinned action's SHA and its version comment must move together**
-  ([ADR 0007](./docs/adr/0007-actions-are-pinned-by-digest-and-auto-merged.md)). The SHA is what runs; the
-  comment is the only thing making it legible. Updating one without the other leaves a workflow that lies
-  about what it executes.
 - **Dependabot is half-configured.** [`.github/workflows/dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) exists but there is no
   `.github/dependabot.yml`, so Dependabot opens no version-update pull requests here. Renovate does the
   work; that workflow only ever sees GitHub's own security updates.
 - **The Dependabot auto-merge runs on `secrets.PAT`**, the same shared workflow every sibling repository carries, so a
   merge is the Owner's rather than the workflow identity's. It is a standing write credential whose expiry nothing
   monitors: when it lapses, that auto-merge stops silently. Renovate needs no such thing: the `main` ruleset requires
-  no approval, only the checks, so its pull requests merge through the platform, and the auto-approve workflow that
-  used to exist for that is gone.
+  no approval, only the checks, so its pull requests merge through the platform.
 - **In [`link-checker.yml`](./.github/workflows/link-checker.yml), two paths must agree and nothing checks that they do.** lychee's `output` and the
   *Create Issue From File* step's `content-filepath` both name `./reports/link-checker-output.md`. Change
   one without the other and issue creation fails on a missing file. It fails silently, because that step
   only ever runs when a link is already broken. Setting `output` explicitly is load-bearing: lychee's own
-  default is `lychee/out.md`, so dropping the input restores the bug. This was the real state of the workflow until it
-  was fixed, and it had never once been exercised.
+  default is `lychee/out.md`, so dropping the input breaks issue creation.
 
 ## Known defects
 

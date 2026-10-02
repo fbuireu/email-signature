@@ -2,7 +2,7 @@
 
 This repository holds two products with different obligations ([ADR 0003](./docs/adr/0003-the-signature-and-its-assets-share-one-repository.md)), and they do not share a language. The **Signature** context is about a document that has to survive a hostile renderer; the **Distribution** context is about public URLs that have to survive being quoted in mail nobody can edit any more. The same English word means different things on either side of that line, so the two are stated separately and the crossing terms are named at the end.
 
-Everything here is vocabulary. How the pieces fit together is [ARCHITECTURE.md](./ARCHITECTURE.md); why they are the way they are is [docs/adr/](./docs/adr/); how to work on them is [AGENTS.md](./AGENTS.md).
+Everything here is vocabulary. How the pieces fit together is [ARCHITECTURE.md](./ARCHITECTURE.md); why they are the way they are is [docs/adr/](./docs/adr/); how to work on them is [AGENTS.md](./AGENTS.md); how they are written is [CODING_STANDARDS.md](./CODING_STANDARDS.md).
 
 ---
 
@@ -20,10 +20,10 @@ _Avoid_: browser, viewer, renderer, email app
 **Layout Table**: A `<table role="presentation">` used purely to position things, because table cells are the only layout primitive a Mail Client can be trusted with. It carries no data and must never be read as tabular content.
 _Avoid_: grid, container, wrapper, layout div
 
-**Inline Style**: A `style` attribute written directly on the element it affects, and the only styling mechanism that reliably survives delivery. Repetition across elements is the expected state, not duplication to be factored out. A `<style>` block or an external stylesheet is not an Inline Style and does not work here.
+**Inline Style**: A `style` attribute written directly on the element it affects, and the only styling mechanism that reliably survives delivery. A `<style>` block or an external stylesheet is not an Inline Style and does not work here.
 _Avoid_: CSS, stylesheet, rule, class
 
-**Icon**: A small square raster image standing in for a contact method or a social profile, at a fixed pixel size. Icons are PNG because Mail Clients render neither SVG nor icon fonts in a body ([ADR 0004](./docs/adr/0004-email-clients-dictate-the-markup.md)).
+**Icon**: A small square raster image standing in for a contact method or a social profile, at a fixed pixel size ([ADR 0004](./docs/adr/0004-email-clients-dictate-the-markup.md)).
 _Avoid_: logo, glyph, image, symbol, badge
 
 **Alt Text**: The `alt` attribute on an Icon, and part of the visible design rather than an accessibility extra: most Mail Clients block remote images by default, so on first read the Alt Text *is* the Icon. It is also the entire fallback if the assets ever stop being served.
@@ -32,7 +32,7 @@ _Avoid_: alt tag, fallback text, description, title
 **Contact Link**: An `<a>` in the Signature pairing an Icon with a destination. It comes in three shapes: labelled through adjacent `<span>`s (the phone number and the personal site), icon-only for the social profiles, where the `<a>` wraps the Icon alone, and labelled through adjacent table cells on a filled background (the GitHub link), the only one whose label carries a colour of its own.
 _Avoid_: entry, item, social icon, button
 
-**Preview**: [`assets/images/output/index.png`](./assets/images/output/index.png), a screenshot of a rendered Signature taken by hand and shown in the README. It illustrates the product but is not the product, and nothing verifies that it still matches ([ADR 0005](./docs/adr/0005-no-build-step.md)).
+**Preview**: [`assets/images/output/index.png`](./assets/images/output/index.png), a screenshot of a rendered Signature taken by hand and shown in the README. It illustrates the product but is not the product, and nothing verifies that it still matches ([ADR 0005](./docs/adr/0005-no-build-step.md)). It sits under `assets/` without being an Asset: no Signature quotes it, so it is replaced rather than superseded ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)).
 _Avoid_: render, output, screenshot, example, demo
 
 ---
