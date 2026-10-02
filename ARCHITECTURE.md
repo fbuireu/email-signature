@@ -1,8 +1,8 @@
 # Architecture
 
 How this repository is put together and why. What it *is* is the [README](./README.md); the vocabulary is
-[CONTEXT.md](./CONTEXT.md); how to work in it is [AGENTS.md](./AGENTS.md). This document does not restate
-them.
+[CONTEXT.md](./CONTEXT.md); how to work in it is [AGENTS.md](./AGENTS.md); what a review checks is
+[CODING_STANDARDS.md](./CODING_STANDARDS.md). This document does not restate them.
 
 ## 1. Two products
 
@@ -155,4 +155,5 @@ context** and **the result of a real trade-off**.
 | [CONTEXT.md](./CONTEXT.md) | Domain vocabulary, split into the two contexts of §1 |
 | [ARCHITECTURE.md](./ARCHITECTURE.md) | This file: the two products, the delivery path, the ADR index |
 | [AGENTS.md](./AGENTS.md) | Working rules, the maintenance contract, gotchas |
+| [CODING_STANDARDS.md](./CODING_STANDARDS.md) | How the markup and the assets are written: what a review checks a diff against |
 | [docs/adr/](./docs/adr/) | Why each irreversible decision was made, and what it cost |

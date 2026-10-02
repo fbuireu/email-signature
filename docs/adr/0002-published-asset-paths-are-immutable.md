@@ -4,7 +4,7 @@ Date: 2026-07-30
 
 ## Status
 
-Accepted.
+Accepted. Amended 2026-09-27: the Preview under `assets/images/output/` is outside the rule, since no Signature quotes it.
 
 ## Context
 
@@ -18,6 +18,8 @@ The alternative, allowing renames and accepting broken images in old mail, is de
 
 A path under `assets/` that has ever been pushed to `main` is permanent. It is never renamed, never moved and never deleted, and the bytes it serves are never swapped for a different image. Changes are made by **adding** a new path and pointing `index.html` at it; the superseded file stays where it is, serving the mail that still references it.
 
+The Preview, [`assets/images/output/index.png`](../../assets/images/output/index.png), is the one exception. The README shows it and no Signature has ever quoted it, so no Sent Mail can break when its bytes change, and it is replaced in place whenever the Signature changes visually ([ADR 0005](./0005-no-build-step.md)).
+
 This makes `assets/` an append-only log rather than a directory of current files, and it makes "unused" an unreliable signal there: a file no `index.html` references may still be the only thing standing between an old email and a broken image.
 
 ## Consequences
@@ -26,4 +28,4 @@ This makes `assets/` an append-only log rather than a directory of current files
 - Replacing an icon means two files where other projects would have one. The visual history of the Signature is therefore recoverable from the tree itself, which is a small unintended benefit.
 - Swapping the *bytes* at an existing path is forbidden as well as renaming it, and for a second reason beyond correctness: GitHub raw offers no cache-control contract ([ADR 0001](./0001-github-raw-serves-the-assets.md)), so an in-place replacement is served inconsistently: some recipients see the old image, some the new, for an unknown period.
 - Splitting the repository, renaming it, changing the default branch away from `main`, or making it private each rewrite the published URLs and are therefore all governed by this rule, not just file renames ([ADR 0003](./0003-the-signature-and-its-assets-share-one-repository.md)).
-- The rule is not enforced by anything. It lives in [`AGENTS.md`](../../AGENTS.md) as a gotcha and in the *Published Path* entry of [`CONTEXT.md`](../../CONTEXT.md); there is no test, because no test inside this repository can see the inboxes that would break.
+- The rule is not enforced by anything. [`AGENTS.md`](../../AGENTS.md) states it for whoever changes the repository, [`CODING_STANDARDS.md`](../../CODING_STANDARDS.md) for whoever reviews the change, and it defines the *Published Path* entry of [`CONTEXT.md`](../../CONTEXT.md); there is no test, because no test inside this repository can see the inboxes that would break.

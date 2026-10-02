@@ -46,11 +46,11 @@
 <!-- Check all that apply, with an "x" -->
 
 - [ ] **No existing path under `assets/` is renamed, moved, deleted, or repointed**: new paths only
-- [ ] Styling stays in inline `style` attributes; layout stays in nested `<table role="presentation">`
-- [ ] Every `<img>` I touched has a meaningful `alt`
+- [ ] I have reviewed my own diff against [`CODING_STANDARDS.md`](../CODING_STANDARDS.md)
+- [ ] The markup keeps to inline `style` attributes, nested `<table role="presentation">` and a meaningful `alt` on every `<img>` I touched
 - [ ] If anything visual changed, [`assets/images/output/index.png`](../assets/images/output/index.png) is regenerated in this same PR
 - [ ] If a link target changed, I checked whether the host belongs in [`.lycheeignore`](../.lycheeignore) and said why in the commit
-- [ ] I updated [`CONTEXT.md`](../CONTEXT.md), [`AGENTS.md`](../AGENTS.md), [`ARCHITECTURE.md`](../ARCHITECTURE.md) or the ADRs if my change affects them, in this same PR
+- [ ] I updated any [`AGENTS.md`](../AGENTS.md), [`CODING_STANDARDS.md`](../CODING_STANDARDS.md), [`CONTEXT.md`](../CONTEXT.md), [`ARCHITECTURE.md`](../ARCHITECTURE.md) or ADR my change affects, in this same PR
 
 ## Additional Notes
 

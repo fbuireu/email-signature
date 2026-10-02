@@ -7,8 +7,11 @@ problem in a mail client, an accessibility gap. Anything bigger, open an issue
 first.
 
 If you want the shape of the repo, that is [ARCHITECTURE.md](./ARCHITECTURE.md).
-The working rules are [AGENTS.md](./AGENTS.md); the vocabulary is
-[CONTEXT.md](./CONTEXT.md); the *why* is [docs/adr/](./docs/adr/).
+If you want the working rules, that is [AGENTS.md](./AGENTS.md). If you want how
+code here is written, and what a review holds a diff to, that is
+[CODING_STANDARDS.md](./CODING_STANDARDS.md). If you want the vocabulary, that
+is [CONTEXT.md](./CONTEXT.md). If you want the *why*, that is
+[docs/adr/](./docs/adr/).
 
 ## Code of Conduct
 
@@ -27,22 +30,17 @@ From that follows the rule that governs `assets/`:
 Every email already sent quotes those URLs, and nothing in this repository can
 see the inboxes that would break. Change an image by *adding* a new path and
 updating [`index.html`](./index.html) to reference it. The old file stays, forever.
+The Preview, `assets/images/output/index.png`, is the one file replaced in place,
+since no email quotes it.
 
 ## What a change here looks like
 
 There is no build, no dependencies, and nothing to install: `index.html` is
 source and artefact at once. But the constraints are unusual, because mail
-clients dictate the markup:
-
-- **Inline `style` attributes only**: mail clients strip `<style>` blocks
-  and external stylesheets
-- **Layout is nested `<table role="presentation">`**: no float, flex, grid
-  or position; Outlook renders with Word's engine
-- **PNG icons at fixed pixel sizes**: no SVG, no icon fonts
-- **Every `<img>` needs a meaningful `alt`**: most clients block remote
-  images by default, so the alt text is what recipients see first
-- **Repetition is correct**: the same inline declarations recur because
-  there is nowhere to share them; factoring them out is the failure mode
+clients dictate the markup: inline styles, nested presentation tables, PNG
+icons, a meaningful `alt` on every image, and repetition where other code
+would factor it out. [CODING_STANDARDS.md](./CODING_STANDARDS.md) lists them
+with their reasons, and every pull request is reviewed against it.
 
 **Judge changes in a real mail client, never in a browser.** Chrome happily
 renders markup that Outlook mangles. Anything visual also means regenerating
