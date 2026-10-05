@@ -114,11 +114,7 @@ decision earns one and where to link it from.
 
 Open, in the Signature as it stands. Fix and delete the entry: deleting it is part of the fix.
 
-- **The disclaimer band's top padding is silently dropped.** The `<td>` wrapping the confidentiality notice
-  asks for `padding: 10 0px 0px 0px !important`, with no unit on the first value, so every engine discards
-  the whole declaration and the band sits flush against the GitHub link. Adding the `px` moves the layout by
-  10px, which makes it a visual change and therefore one to judge in a mail client and land with a new
-  Preview.
+None today.
 
 ## Repository identity is part of the contract
 
