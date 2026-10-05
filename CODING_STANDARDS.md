@@ -57,9 +57,10 @@ The capability floor is Outlook on Windows ([ADR 0004](./docs/adr/0004-email-cli
 - **hard**: Tags balance per element: a `<span>` opened inside an `<a>` closes inside it. Per-file counts
   hide pairs of defects that cancel out, as two did here for over a year, and Word's engine leaks the unclosed
   style into the rest of the block.
-- **hard**: Every non-zero CSS length carries its unit, since an engine drops the whole declaration when one
-  value lacks it (the disclaimer band's padding, under *Known defects* in [AGENTS.md](./AGENTS.md), is the
-  standing example).
+- **hard**: Every non-zero CSS length carries its unit. `index.html` has no doctype, so a browser opening it
+  renders in quirks mode and reads a bare number as pixels, while an engine in standards mode drops the whole
+  declaration: the disclaimer band's `padding: 10 0px …` was 10px where the Signature is copied from and
+  nothing in a standards-mode client.
 - **judgement**: A new asset reference uses the direct `raw.githubusercontent.com/…` form. Existing
   references keep the form they were published with ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)).
 
