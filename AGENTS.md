@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Agent-facing guide for **email-signature**. See [CONTEXT.md](./CONTEXT.md) for the domain vocabulary
+Agent-facing guide for **email-signature**. See [GLOSSARY.md](./GLOSSARY.md) for the domain vocabulary
 (Signature, Published Path, Supersession, Sent Mail…) and do not duplicate it here.
 [ARCHITECTURE.md](./ARCHITECTURE.md) is the big picture: the two products, the delivery path and the ADR
 index.
@@ -65,7 +65,7 @@ is a promise, not a fix.
 | Anything visual in `index.html` | Regenerate [`assets/images/output/index.png`](./assets/images/output/index.png) and commit it in the same change |
 | An icon | Add a new Published Path; never edit or rename the old one |
 | A link target | Check whether the host belongs in [`.lycheeignore`](./.lycheeignore), and say why in the commit |
-| What a domain word means, or introduce a new one | [`CONTEXT.md`](./CONTEXT.md): the glossary, vocabulary only |
+| What a domain word means, or introduce a new one | [`GLOSSARY.md`](./GLOSSARY.md): the glossary, vocabulary only |
 | A rule about how code is written: the markup, the assets, the workflows | [`CODING_STANDARDS.md`](./CODING_STANDARDS.md) |
 | The delivery path, the workflows, or the file structure | [`ARCHITECTURE.md`](./ARCHITECTURE.md) |
 | A behaviour a doc states as an invariant or a gotcha | that bullet, or delete it if it stopped being true |

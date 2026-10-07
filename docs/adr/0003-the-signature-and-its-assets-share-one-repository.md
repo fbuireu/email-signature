@@ -20,7 +20,7 @@ Both products live in this repository, and this is treated as a decision with a 
 
 ## Consequences
 
-- **The repository has two contracts at once**, and they are not the same contract. `index.html` may be rewritten at will; `assets/` may only be appended to. Anyone working here, human or agent, has to know which half they are touching. [`CONTEXT.md`](../../CONTEXT.md) is split into two bounded contexts for exactly this reason.
+- **The repository has two contracts at once**, and they are not the same contract. `index.html` may be rewritten at will; `assets/` may only be appended to. Anyone working here, human or agent, has to know which half they are touching. [`GLOSSARY.md`](../../GLOSSARY.md) is split into two bounded contexts for exactly this reason.
 - The repository name, owner, default branch and visibility are all frozen by the URLs they appear in, so this decision inherits the whole of [ADR 0002](./0002-published-asset-paths-are-immutable.md)'s cost.
 - "Is this repository still needed?" has no single answer. The Signature could be abandoned tomorrow and the repository would still have to exist, public and on `main`, to serve mail already sent. Archiving is safe (archived repositories still serve raw); deleting is not.
 - The cost is a permanently muddled repository description. A reader arriving at the README sees a signature template and has no reason to suspect the assets carry an obligation the HTML does not, which is why the README links the documentation rather than standing alone.
