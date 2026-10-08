@@ -119,7 +119,7 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 | [`zizmor.yml`](./.github/workflows/zizmor.yml) | push to `main`, any pull request | Statically audits the workflow files themselves; `permissions: {}` at top level, narrowed per job |
 | [`commit-message.yml`](./.github/workflows/commit-message.yml) | pull request opened/edited/reopened/synchronised | Lints the pull request title against conventional commits, which is the message a squash merge commits; a pinned action does it, since there is no toolchain here to run commitlint |
 | [`dependency-review.yml`](./.github/workflows/dependency-review.yml) | every pull request | Fails a pull request that introduces an action with a known vulnerability; the actions are this repository's whole supply chain |
-| [`dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor/dev/indirect updates; comments and labels on major |
+| [`dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) | pull request opened/synchronised | Approves and squash-merges Dependabot patch/minor updates, and dev/indirect ones short of a major; comments on and labels a major instead |
 
 [`.lycheeignore`](./.lycheeignore) exempts a handful of hosts (Reddit, Medium, Unsplash and LinkedIn) because they defend against
 bots and answer CI with `403` or another `4xx`. Those links are therefore never verified at all: if one
