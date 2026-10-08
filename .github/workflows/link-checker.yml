@@ -1,16 +1,23 @@
 name: Link Checker
-permissions:
-  contents: read
-  issues: write
+permissions: {}
 on:
   workflow_dispatch:
   pull_request:
   push:
+    branches: [main]
+  schedule:
+    - cron: 0 4 * * 1
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 jobs:
   build:
     name: Link Checker
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: read
+      issues: write
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
@@ -21,10 +28,21 @@ jobs:
         with:
           fail: true
           output: ./reports/link-checker-output.md
+      - name: Find the open report
+        id: report
+        if: failure() && steps.lychee.outputs.exit_code != 0 && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+        shell: bash
+        run: |
+          number=$(gh issue list --state open --label "automated issue" --search 'in:title "Link Checker Report"' --json number --jq '.[0].number // empty')
+          echo "number=$number" >> "$GITHUB_OUTPUT"
       - name: Create issue from file
-        if: failure() && steps.lychee.outputs.exit_code != 0
+        if: failure() && steps.lychee.outputs.exit_code != 0 && github.event_name != 'pull_request'
         uses: peter-evans/create-issue-from-file@fca9117c27cdc29c6c4db3b86c48e4115a786710 # v6.0.0
         with:
           title: Link Checker Report
           content-filepath: ./reports/link-checker-output.md
           labels: report, automated issue
+          issue-number: ${{ steps.report.outputs.number }}

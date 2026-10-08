@@ -107,7 +107,7 @@ decision earns one and where to link it from.
 - **In [`link-checker.yml`](./.github/workflows/link-checker.yml), two paths must agree and nothing checks that they do.** lychee's `output` and the
   *Create Issue From File* step's `content-filepath` both name `./reports/link-checker-output.md`. Change
   one without the other and issue creation fails on a missing file. It fails silently, because that step
-  only ever runs when a link is already broken. Setting `output` explicitly is load-bearing: lychee's own
+  only ever runs when a link is already broken, and never on a pull request. Setting `output` explicitly is load-bearing: lychee's own
   default is `lychee/out.md`, so dropping the input breaks issue creation.
 
 ## Known defects
