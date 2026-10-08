@@ -115,7 +115,7 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 
 | Workflow | Trigger | Does |
 | --- | --- | --- |
-| [`link-checker.yml`](./.github/workflows/link-checker.yml) | push, pull request, manual | Runs lychee with `fail: true`, then opens an issue from the report when it fails. The only check on the delivery path |
+| [`link-checker.yml`](./.github/workflows/link-checker.yml) | push to `main`, pull request, weekly schedule, manual | Runs lychee with `fail: true`. On a pull request a broken link only fails the check; anywhere else it opens the *Link Checker Report* issue from the report, or updates the one already open, so a link that keeps failing is one issue. The weekly run catches a link that dies with nothing pushed. The only check on the delivery path |
 | [`zizmor.yml`](./.github/workflows/zizmor.yml) | push to `main`, any pull request | Statically audits the workflow files themselves; `permissions: {}` at top level, narrowed per job |
 | [`commit-message.yml`](./.github/workflows/commit-message.yml) | pull request opened/edited/reopened/synchronised | Lints the pull request title against conventional commits, which is the message a squash merge commits; a pinned action does it, since there is no toolchain here to run commitlint |
 | [`dependency-review.yml`](./.github/workflows/dependency-review.yml) | every pull request | Fails a pull request that introduces an action with a known vulnerability; the actions are this repository's whole supply chain |
