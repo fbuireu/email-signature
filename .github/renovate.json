@@ -20,6 +20,7 @@
 		"labels": ["security", "vulnerability"]
 	},
 	"osvVulnerabilityAlerts": true,
+	"semanticCommits": "enabled",
 	"packageRules": [
 		{
 			"matchUpdateTypes": ["pin", "pinDigest", "digest"],
@@ -45,13 +46,8 @@
 			"automerge": false
 		},
 		{
-			"matchDepNames": ["node"],
-			"allowedVersions": "/^[0-9]*[02468]\\./",
-			"groupName": "node"
-		},
-		{
-			"matchDepNames": ["pnpm"],
-			"groupName": "pnpm"
+			"matchManagers": ["github-actions"],
+			"addLabels": ["ci"]
 		}
 	]
 }
