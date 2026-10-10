@@ -82,6 +82,9 @@ The capability floor is Outlook on Windows ([ADR 0004](./docs/adr/0004-email-cli
   renderer that defaults to ELK cannot redraw it.
 - **judgement**: Propose an ADR only for a decision that is hard to reverse, surprising without context and the
   result of a real trade-off, and link it from where it bites.
+- **hard**: Fix a breach in the change that finds it, or report it on the pull request with the rule it breaks;
+  no guide keeps a list of known inconsistencies, because an entry is a claim about the code that nothing keeps
+  true.
 
 ## Deliberate overrides of the smell baseline
 
