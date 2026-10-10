@@ -110,12 +110,6 @@ decision earns one and where to link it from.
   only ever runs when a link is already broken, and never on a pull request. Setting `output` explicitly is load-bearing: lychee's own
   default is `lychee/out.md`, so dropping the input breaks issue creation.
 
-## Known defects
-
-Open, in the Signature as it stands. Fix and delete the entry: deleting it is part of the fix.
-
-None today.
-
 ## Repository identity is part of the contract
 
 Owner, repository name, default branch and public visibility all appear inside the published URLs. Renaming
