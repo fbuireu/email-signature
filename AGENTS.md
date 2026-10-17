@@ -2,8 +2,9 @@
 
 Agent-facing guide for **email-signature**. See [GLOSSARY.md](./GLOSSARY.md) for the domain vocabulary
 (Signature, Published Path, Supersession, Sent Mail…) and do not duplicate it here.
-[ARCHITECTURE.md](./ARCHITECTURE.md) is the big picture: the two products, the delivery path and the ADR
-index.
+[ARCHITECTURE.md](./ARCHITECTURE.md) is the big picture: the two products, the delivery path, the checks and
+merges, and the ADR index. How the Signature is installed in a mail client is in the
+[README](./README.md#using-the-signature).
 
 Reviewing a diff: [CODING_STANDARDS.md](./CODING_STANDARDS.md).
 
@@ -100,10 +101,15 @@ decision earns one and where to link it from.
 - **Dependabot is half-configured.** [`.github/workflows/dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) exists but there is no
   `.github/dependabot.yml`, so Dependabot opens no version-update pull requests here. Renovate does the
   work; that workflow only ever sees GitHub's own security updates.
-- **The Dependabot auto-merge runs on `secrets.PAT`**, the same shared workflow every sibling repository carries, so a
-  merge is the Owner's rather than the workflow identity's. It is a standing write credential whose expiry nothing
-  monitors: when it lapses, that auto-merge stops silently. Renovate needs no such thing: the `main` ruleset requires
-  no approval, only the checks, so its pull requests merge through the platform.
+- **The Dependabot auto-merge runs on `secrets.PAT`**, the same shared workflow every sibling repository with workflows
+  carries (the CV and the Hashnode backup have none), so a merge is the Owner's rather than the workflow identity's. It
+  is a standing write credential whose expiry nothing monitors: when it lapses, that auto-merge stops silently. A run
+  started by a Dependabot pull request reads only Dependabot secrets, so `PAT` is stored there as well as among the
+  Actions secrets, and a rotation updates both ([ARCHITECTURE.md](./ARCHITECTURE.md) §5). Renovate needs no such thing:
+  the `main` ruleset requires no approval, only the checks, so its pull requests merge through the platform.
+- **One dead link anywhere blocks every pull request.** `Link Checker` is a required check and reads the whole tree,
+  so Renovate's automerge stalls too until the link is fixed or its host goes into `.lycheeignore`
+  ([ARCHITECTURE.md](./ARCHITECTURE.md) §5).
 - **In [`link-checker.yml`](./.github/workflows/link-checker.yml), two paths must agree and nothing checks that they do.** lychee's `output` and the
   *Create Issue From File* step's `content-filepath` both name `./reports/link-checker-output.md`. Change
   one without the other and issue creation fails on a missing file. It fails silently, because that step
