@@ -1,10 +1,10 @@
 # Contributing to email-signature
 
-A caveat up front: this is one person's email signature and the CDN that
-serves its assets. It is personal infrastructure, not a community project. The
-contributions that fit are small and specific: a broken link, a rendering
-problem in a mail client, an accessibility gap. Anything bigger, open an issue
-first.
+A caveat up front: this is one person's email signature and the public
+repository its icons are served from. It is personal infrastructure, not a
+community project. The contributions that fit are small and specific: a broken
+link, a rendering problem in a mail client, an accessibility gap. Anything
+bigger, open an issue first.
 
 If you want the shape of the repo, that is [ARCHITECTURE.md](./ARCHITECTURE.md).
 If you want the working rules, that is [AGENTS.md](./AGENTS.md). If you want how

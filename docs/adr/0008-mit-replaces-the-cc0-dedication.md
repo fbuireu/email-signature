@@ -13,8 +13,8 @@ that a signature template is too small to be worth an obligation, and that an at
 is worse than no clause at all.
 
 Things pull the other way. The first is consistency: every other repository under this account carries a
-licence rather than a dedication, bar the CV, which is under the Unlicense, and a reader who checks one
-licence expects the next to work the same way. The second is the
+licence rather than a dedication, bar the CV, which was under the Unlicense and has reserved all rights to its
+data since 2026-09-25, and a reader who checks one licence expects the next to work the same way. The second is the
 warranty disclaimer. CC0 waives copyright and offers no warranty language of its own beyond a short paragraph;
 MIT states the disclaimer plainly, which is what a reuser pasting markup into a mail client is actually reading
 for.
