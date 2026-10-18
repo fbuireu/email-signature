@@ -94,6 +94,27 @@ Consequences follow directly and are worth stating before anything else:
   all appear in the published URLs, so renaming, transferring, or making this repository private breaks
   sent mail exactly as deleting a file would.
 
+### Undoing a bad change
+
+A bad change is undone by another change down the same path:
+
+- **Revert it on `main` through a pull request.** The `main` ruleset takes changes only through one, so the
+  revert passes the same four checks. Title it `revert: …`: the `Revert "…"` title GitHub's *Revert* button
+  proposes fails `Lint the pull request title`.
+- **The reverted `main` is served at once, but not seen everywhere at once.** GitHub raw serves the branch as it
+  stands, and answers with `Cache-Control: max-age=300`, so a cache between it and a reader may keep the old
+  bytes for about five minutes. GitHub documents no cache contract for raw
+  ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)), so treat it as not instant.
+- **A revert keeps every Published Path.** An email already sent quotes its Icons by path, and no path under
+  `assets/` is ever renamed or deleted ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)),
+  so Sent Mail keeps its Icons whatever the revert does to `index.html`. If the bad change added an Icon,
+  revert the reference and keep the file: it was published the moment it reached `main`. If it swapped the
+  bytes at an existing path, putting the old bytes back is the one revert that reaches Sent Mail, the same
+  repair as for a missing path above.
+- **A Signature already pasted does not update itself.** Each mail client keeps the copy it was given, so once
+  the revert is on `main`, install the Signature again in every client, as the
+  [README](./README.md#using-the-signature) walks through.
+
 ## 3. The Signature
 
 `index.html` is a single tree of nested `<table role="presentation">` elements with every style written
