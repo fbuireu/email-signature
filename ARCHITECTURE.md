@@ -38,7 +38,7 @@ flowchart LR
     merge --> main["main"]
     admin["admin push,<br/>ruleset bypassed"] -.-> main
     main --> onpush["on push:<br/>Link Checker, zizmor, CodeQL"]
-    main --> raw["raw.githubusercontent.com<br/>serves assets/ at<br/>immutable paths"]
+    main --> raw["raw.githubusercontent.com<br/>serves assets/ from main;<br/>paths never change, by rule"]
     main --> copy["open index.html<br/>in a browser, copy"]
     copy --> paste["paste into the<br/>mail client"]
     paste --> send["send mail"]

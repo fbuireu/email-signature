@@ -27,7 +27,8 @@ flowchart LR
     test --> ok{"looks right?"}
     ok -->|yes| done["done, until<br/>index.html changes"]
     ok -->|no| fix["fix index.html,<br/>not the pasted copy"]
-    fix --> open
+    fix --> merged["pull request,<br/>merged to main"]
+    merged --> open
 ```
 
 1. **Open [`index.html`](./index.html) in a desktop browser**, straight from a checkout of `main`, and wait for
@@ -52,7 +53,7 @@ Two rules keep the copies honest:
 
 - **Never edit a link, a number or any text in the client's own editor.** The editor rewrites the markup
   around whatever it touches (Outlook's is Word's), and the change lives in that one client only. Edit
-  `index.html` and paste again.
+  `index.html`, merge it to `main`, and paste again from there.
 - **Install again after any change to `index.html`.** A pasted signature is a copy taken at paste time, so
   every client keeps sending the old one until it is replaced. A changed icon is a new image path
   ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)), so an old copy keeps showing the old icon too.
