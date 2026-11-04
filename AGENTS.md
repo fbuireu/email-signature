@@ -98,15 +98,10 @@ decision earns one and where to link it from.
   with `503` and fails a run with nothing broken. The `raw.githubusercontent.com` URLs are still checked;
   a renamed or deleted file behind a `blob` URL is caught only by review, against
   [ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md).
-- **Dependabot is half-configured.** [`.github/workflows/dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) exists but there is no
-  `.github/dependabot.yml`, so Dependabot opens no version-update pull requests here. Renovate does the
-  work; that workflow only ever sees GitHub's own security updates.
-- **The Dependabot auto-merge runs on `secrets.PAT`**, the same shared workflow every sibling repository with workflows
-  carries (the CV and the Hashnode backup have none), so a merge is the Owner's rather than the workflow identity's. It
-  is a standing write credential whose expiry nothing monitors: when it lapses, that auto-merge stops silently. A run
-  started by a Dependabot pull request reads only Dependabot secrets, so `PAT` is stored there as well as among the
-  Actions secrets, and a rotation updates both ([ARCHITECTURE.md](./ARCHITECTURE.md) §5). Renovate needs no such thing:
-  the `main` ruleset requires no approval, only the checks, so its pull requests merge through the platform.
+- **Dependabot opens no pull requests here.** There is no `.github/dependabot.yml`, and its security updates are
+  off in the repository settings; only its alerts stay on, which Renovate reads to open the security updates.
+  Renovate needs no credential to merge: the `main` ruleset requires no approval, only the checks, so its pull
+  requests merge through the platform.
 - **One dead link anywhere blocks every pull request.** `Link Checker` is a required check and reads the whole tree,
   so Renovate's automerge stalls too until the link is fixed or its host goes into `.lycheeignore`
   ([ARCHITECTURE.md](./ARCHITECTURE.md) §5).

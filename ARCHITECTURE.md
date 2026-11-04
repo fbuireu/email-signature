@@ -176,7 +176,6 @@ as a trailing comment, and updated by Renovate under an automerge policy graded 
 | [`zizmor.yml`](./.github/workflows/zizmor.yml) | push to `main`, any pull request | Statically audits the workflow files themselves and uploads the findings to code scanning, which reports them as the `zizmor` check; `permissions: {}` at top level, narrowed per job |
 | [`commit-message.yml`](./.github/workflows/commit-message.yml) | pull request opened/edited/reopened/synchronised | Lints the pull request title against conventional commits, which is the message a squash merge commits; a pinned action does it, since there is no toolchain here to run commitlint |
 | [`dependency-review.yml`](./.github/workflows/dependency-review.yml) | every pull request | Fails a pull request that introduces an action with a known vulnerability; the actions are this repository's whole supply chain, and the dependency graph reads them from the `uses:` lines, recorded by commit SHA |
-| [`dependabot-auto-merge.yml`](./.github/workflows/dependabot-auto-merge.yml) | pull request opened/synchronised, acting only when Dependabot opened it | Approves and arms a squash auto-merge, with `PAT`, for Dependabot patch/minor updates, and dev/indirect ones short of a major; comments on a major instead. Labels each update by type: `patch-update` and `auto-merge`, `minor-update`, or `major-update` and `review-required` |
 
 CodeQL runs here too, through GitHub's **default setup** rather than a workflow in the tree. It analyses the
 `actions` language on pushes to `main`, on pull requests and once a week, and reports as the `CodeQL` check,
@@ -197,8 +196,6 @@ config:
 flowchart TD
     human["the Owner or<br/>a contributor"] --> required
     renovate["Renovate: 1st and 15th,<br/>vulnerability alerts any time"] --> required
-    dependabot["Dependabot:<br/>security updates only"] --> armer["dependabot-auto-merge.yml:<br/>approve and arm squash auto-merge<br/>with PAT, unless major"]
-    armer --> required
     subgraph required["required checks"]
         lc["Link Checker"]
         lint["Lint the pull request title"]
@@ -210,11 +207,9 @@ flowchart TD
     green -->|yes| who{"whose is it?"}
     who -->|"a human's"| owner["the Owner squash-merges"]
     who -->|"Renovate pin, digest,<br/>patch or minor"| renmerge["auto-merge Renovate<br/>armed when it opened it"]
-    who -->|"Dependabot, armed"| ghmerge["GitHub's auto-merge"]
     who -->|"any major"| majorwait["waits for the Owner"]
     owner --> main["push to main"]
     renmerge --> main
-    ghmerge --> main
     majorwait --> main
     admin["admin push"] -.->|"ruleset bypassed,<br/>no checks"| main
     main --> post["Link Checker and zizmor<br/>run again; CodeQL analyses"]
@@ -230,12 +225,6 @@ flowchart TD
   The way out is to fix or drop the link, or, for a host that only refuses bots, to add it to
   [`.lycheeignore`](./.lycheeignore) with the reason in the commit; the pull request doing that is the one
   that turns the check green again.
-- **The Dependabot merge is the Owner's, through `PAT`, and `PAT` has to be stored twice.** A workflow run
-  started by a Dependabot pull request gets no Actions secrets, only the repository's **Dependabot** secrets,
-  so `PAT` must exist in both stores (Settings → Secrets and variables → Actions, and → Dependabot) with the
-  same value. Nothing watches its expiry: the first sign is a red *Approve and auto-merge* step on a
-  Dependabot pull request that then sits open. To rotate it, create the new token on the Owner's account and
-  update `PAT` in both stores before revoking the old one.
 
 ### The link checker's decision
 
@@ -277,8 +266,9 @@ dies for real, nothing notices. It also exempts this repository's own assets in 
 once; the assets are still verified through their `raw.githubusercontent.com` URLs.
 
 Renovate is the bot doing the work ([`.github/renovate.json`](./.github/renovate.json): digest pinning, a four-day `minimumReleaseAge`,
-runs on the 1st and 15th, vulnerability alerts at any time). Dependabot has an auto-merge workflow but **no
-`.github/dependabot.yml`**, so it raises only the security updates GitHub creates on its own.
+runs on the 1st and 15th, vulnerability alerts at any time). Dependabot opens no pull requests: there is **no
+`.github/dependabot.yml`**, and its security updates are off in the repository settings. Only its alerts stay
+on, which Renovate reads to open the security updates.
 
 ## 6. Decision records
 

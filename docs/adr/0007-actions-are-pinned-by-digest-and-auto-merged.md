@@ -4,7 +4,7 @@ Date: 2026-07-30
 
 ## Status
 
-Accepted.
+Accepted. Amended 2026-11-04: Dependabot opens no pull requests and its auto-merge workflow is gone; Renovate opens the security updates from Dependabot's alerts.
 
 ## Context
 
@@ -29,5 +29,5 @@ Every third-party action is pinned to a **full commit SHA** with the human-reada
 - **A version bump is a two-part edit and the comment is not decorative.** The SHA is what runs; the `# v7.0.0` comment is the only thing making the reference legible. Changing one without the other produces a workflow file that lies about what it executes.
 - The 4-day `minimumReleaseAge` means this repository is deliberately never on the newest release. That is the point, and it is a cost: a genuine fix waits four days too.
 - **Auto-merge is only as safe as the window it leaves.** A malicious patch release that survives four days undetected merges here without a human ever looking at it. The policy accepts that risk for patch and minor; the line is drawn at major, which is a proxy for blast radius rather than for maliciousness, and a poor proxy at that. It was chosen because reviewing everything means reviewing nothing.
-- [`.github/workflows/dependabot-auto-merge.yml`](../../.github/workflows/dependabot-auto-merge.yml) exists but there is **no `.github/dependabot.yml`**, so Dependabot is not configured to open version-update pull requests here at all. That workflow currently applies only to the security updates GitHub raises on its own, and Renovate is the bot doing the actual work. Two bots are configured where one is running.
-- The Dependabot auto-merge runs on `secrets.PAT` rather than `GITHUB_TOKEN`, so the merge is the Owner's and the workflows that run on `main` fire on it. That PAT is a standing credential with write access, stored both as an Actions secret and as a Dependabot secret because a run a Dependabot pull request starts reads only the latter, and its expiry is an unmonitored single point of failure: when it lapses, that automation stops silently. Renovate's own pull requests need no approval, because the `main` ruleset requires none; the auto-approve workflow that used to grant one is gone, and with it the only other use of the PAT.
+- There is **no `.github/dependabot.yml`**, and Dependabot's security updates are off in the repository settings, so Dependabot opens no pull requests here at all. Only its alerts stay on, which Renovate reads to open the security updates; Renovate is the one bot doing the work.
+- Renovate's own pull requests need no approval, because the `main` ruleset requires none. The auto-approve workflow that used to grant one is gone, and so is the Dependabot auto-merge that ran on a PAT, so no workflow here uses one.
