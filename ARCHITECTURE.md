@@ -15,7 +15,7 @@ attached to each. They are siblings, neither subordinate to the other
 | Is | [`index.html`](./index.html), a single file | [`assets/images/png/`](./assets/images/png), a set of small PNGs |
 | Kind | A document, finished when it renders | A service, never finished |
 | Consumers | One person, pasting it into a mail client | Every message already sent |
-| Contract | None. Rewrite it freely | Paths are permanent ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)) |
+| Contract | None. Rewrite it freely | A path's bytes never change, and a path the Signature drops is deleted ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)) |
 | Fails by | Rendering wrong in Outlook | A path going missing |
 | Failure is visible | Immediately, to the sender | Never, to anyone who can fix it |
 
@@ -105,12 +105,13 @@ A bad change is undone by another change down the same path:
   stands, and answers with `Cache-Control: max-age=300`, so a cache between it and a reader may keep the old
   bytes for about five minutes. GitHub documents no cache contract for raw
   ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)), so treat it as not instant.
-- **A revert keeps every Published Path.** An email already sent quotes its Icons by path, and no path under
-  `assets/` is ever renamed or deleted ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)),
-  so Sent Mail keeps its Icons whatever the revert does to `index.html`. If the bad change added an Icon,
-  revert the reference and keep the file: it was published the moment it reached `main`. If it swapped the
-  bytes at an existing path, putting the old bytes back is the one revert that reaches Sent Mail, the same
-  repair as for a missing path above.
+- **A revert follows the same rule as any change to `assets/`.** An email already sent quotes its Icons by
+  path, and a path the Signature stops quoting is deleted
+  ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)), so a revert that drops an Icon from
+  `index.html` deletes its file too, and mail sent in between loses that Icon. A revert that brings back a
+  deleted Icon restores its path, which repairs the mail still quoting it. If the bad change swapped the bytes
+  at an existing path, putting the old bytes back is the one revert that reaches Sent Mail, the same repair as
+  for a missing path above.
 - **A Signature already pasted does not update itself.** Each mail client keeps the copy it was given, so once
   the revert is on `main`, install the Signature again in every client, as the
   [README](./README.md#using-the-signature) walks through.

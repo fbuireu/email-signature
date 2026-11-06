@@ -44,10 +44,10 @@ The domain of serving public files at stable URLs to consumers this repository c
 **Asset**: A file under `assets/` that is served publicly. In this context an Asset is defined by its URL, not by its pixels: replacing the bytes at a given location produces a different image at the same Asset, which is forbidden, rather than a new Asset.
 _Avoid_: image, file, resource, static file
 
-**Published Path**: The location under `assets/` at which an Asset is served, and the unit of promise in this context. Once pushed to `main` it is permanent: never renamed, never moved, never deleted, and never repointed at different bytes ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)).
+**Published Path**: The location under `assets/` at which an Asset is served, and the unit of promise in this context. Once pushed to `main` it serves the same bytes for as long as it exists, and it exists for as long as the Signature quotes it: a changed Icon gets a new Published Path, and one the Signature no longer quotes is deleted ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)).
 _Avoid_: filename, path, location, URL slug
 
-**Publication**: The act that makes a Published Path permanent: a push to `main`, since GitHub raw serves the branch directly ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)). There is no upload, no deploy and no build between committing and publishing, which is why an accidental push cannot be taken back.
+**Publication**: The act that makes a Published Path public: a push to `main`, since GitHub raw serves the branch directly ([ADR 0001](./docs/adr/0001-github-raw-serves-the-assets.md)). There is no upload, no deploy and no build between committing and publishing, which is why an accidental push cannot be taken back.
 _Avoid_: deploy, release, upload, ship
 
 **Consumer**: Anything fetching a Published Path. Exactly one Consumer is visible from inside this repository (`index.html`); the ones that matter are not: every message already sent quotes these URLs from an inbox nobody here can reach.
@@ -56,7 +56,7 @@ _Avoid_: client, user, caller, dependent
 **Sent Mail**: Messages already delivered that still reference Published Paths. It is the reason this context exists and the constraint behind every rule in it: **Sent Mail cannot be edited**, so it can only be broken, never fixed.
 _Avoid_: history, old emails, archive, legacy
 
-**Supersession**: How an Asset is changed, given that it cannot be modified: add a new Published Path and repoint the Signature at it, leaving the old one serving Sent Mail. It makes `assets/` append-only, and it makes "unreferenced" a meaningless signal there: an Asset no Signature mentions may still be the only thing an old message has.
+**Supersession**: How an Asset is changed, given that its bytes cannot be: add a new Published Path, repoint the Signature at it, and delete the old one, which Sent Mail that quoted it then shows as a broken image ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)). It keeps `assets/images/png/` equal to what the Signature quotes, so "unreferenced" means dead there.
 _Avoid_: replacement, update, overwrite, migration
 
 **Ignored Domain**: A host listed in [`.lycheeignore`](./.lycheeignore) and therefore never verified by the link checker. These are excluded because they defend against bots and answer CI with `403` or another `4xx`, not because the links are broken. A genuinely dead one on those hosts fails silently and forever.
@@ -70,8 +70,8 @@ Some words mean different things depending on which product is being discussed, 
 
 | Word | In the Signature context | In the Distribution context |
 | --- | --- | --- |
-| **Asset** | An Icon, a picture chosen for how it renders, freely swappable for a better one | A Published Path, a permanent public promise, never swappable |
+| **Asset** | An Icon, a picture chosen for how it renders, freely swappable for a better one | A Published Path, a public promise whose bytes never change |
 | **Publish** | Pasting the Signature into a mail client, a private and reversible act | Pushing to `main`, an irreversible public one |
-| **Unused** | An Icon no longer referenced by `index.html`: dead weight | An Asset no longer referenced by `index.html`: still load-bearing for Sent Mail, and must be kept |
+| **Unused** | An Icon no longer referenced by `index.html`: dead weight | An Asset no longer referenced by `index.html`: deleted, at the cost of a broken image in the Sent Mail that quoted it |
 
-The word **Asset** on its own is the trap. Preferring *Icon* when discussing what renders and *Published Path* when discussing what is served keeps the two obligations from being confused, and the confusion is not academic: deleting an "unused asset" is a routine cleanup in one context and permanent damage in the other.
+The word **Asset** on its own is the trap. Preferring *Icon* when discussing what renders and *Published Path* when discussing what is served keeps the two obligations from being confused, and the confusion is not academic: deleting an "unused asset" is a routine cleanup in one context and, in the other, a deliberate trade that breaks that image in Sent Mail.

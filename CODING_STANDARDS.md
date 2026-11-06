@@ -31,12 +31,13 @@ Nothing checks the markup or the assets: there is no build and no test here
 
 ## Published Paths
 
-- **hard**: Changes under `assets/images/png/` are additions only. An existing Published Path keeps its
-  name, its location and its bytes; a changed Icon arrives as a new path plus a Signature that points at it
-  ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)). A diff that modifies, renames or
-  deletes a file there is a defect, whether or not `index.html` still references it.
-- **hard**: `assets/` keeps every file it has ever published. An Asset the Signature no longer references
-  still serves Sent Mail, so a diff that removes one as unused is a defect.
+- **hard**: An existing Published Path keeps its bytes; a changed Icon arrives as a new path plus a Signature
+  that points at it, and the old path is deleted in the same diff
+  ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)). A diff that modifies the bytes at a
+  path there is a defect.
+- **hard**: `assets/images/png/` holds exactly the Icons the Signature references. A diff that stops
+  referencing an Icon deletes its file, and a file nothing references is removed; Sent Mail that quoted it
+  loses that Icon, which is the accepted cost.
 - **hard**: The Preview, `assets/images/output/index.png`, is the one file rewritten in place, because no
   Signature quotes it ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)).
 - **judgement**: A new Icon is named for what it depicts, lowercase and hyphenated, and sits flat in

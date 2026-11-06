@@ -35,12 +35,13 @@ and publishing, and reverting does not unpublish: the URL was live in between.
 From that follows the rule that governs `assets/`
 ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)):
 
-> A path under `assets/` that has ever been pushed to `main` is **never renamed, moved, deleted, or
-> repointed at different bytes.**
+> A path under `assets/` that has ever been pushed to `main` is **never repointed at different bytes**, and
+> a path the Signature no longer quotes is **deleted**.
 
-Change an image by *adding* a new path and updating `index.html` to reference it. The old file stays. This
-is the opposite of the normal instinct: the callers that would break are not in this repository, so no
-search, no test and no CI check will find them. The Preview, `assets/images/output/index.png`, is the one
+Change an image by *adding* a new path, updating `index.html` to reference it, and deleting the old file in
+the same commit. Sent Mail that quoted the old path loses that icon, and that is accepted; what is not is
+different bytes at a path some mail already shows, which no search, no test and no CI check would catch,
+because the callers are not in this repository. The Preview, `assets/images/output/index.png`, is the one
 exception: no Signature quotes it, so it is replaced in place.
 
 ## Writing the markup
@@ -64,7 +65,7 @@ is a promise, not a fix.
 | If you change | Update |
 | --- | --- |
 | Anything visual in `index.html` | Regenerate [`assets/images/output/index.png`](./assets/images/output/index.png) and commit it in the same change |
-| An icon | Add a new Published Path; never edit or rename the old one |
+| An icon | Add a new Published Path and delete the old one; never edit the old one's bytes |
 | A link target | Check whether the host belongs in [`.lycheeignore`](./.lycheeignore), and say why in the commit |
 | What a domain word means, or introduce a new one | [`GLOSSARY.md`](./GLOSSARY.md): the glossary, vocabulary only |
 | A rule about how code is written: the markup, the assets, the workflows | [`CODING_STANDARDS.md`](./CODING_STANDARDS.md) |
@@ -77,9 +78,9 @@ decision earns one and where to link it from.
 
 ## Gotchas
 
-- **"Unused asset" is a meaningless signal.** A file `index.html` no longer references may be the only thing
-  standing between an old email and a broken image. `assets/images/png/` already contains icons the current
-  Signature does not use, and that is the expected state, not debt. Never clean this directory.
+- **Deleting an unused asset breaks it in Sent Mail, and that is the accepted cost.** `assets/images/png/` holds
+  exactly the icons `index.html` references, so a file nothing references is removed, but an email that
+  quoted it shows a broken image from then on ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)).
 - **Two URL forms are in use and they are not equivalent.** The social icons and the GitHub link's are referenced as
   `github.com/…/blob/main/…?raw=true`, which reaches the bytes only by redirect; the phone and website icons
   use the direct `raw.githubusercontent.com/…` form. Both are published, so neither is rewritten

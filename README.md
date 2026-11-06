@@ -55,13 +55,15 @@ Two rules keep the copies honest:
   around whatever it touches (Outlook's is Word's), and the change lives in that one client only. Edit
   `index.html`, merge it to `main`, and paste again from there.
 - **Install again after any change to `index.html`.** A pasted signature is a copy taken at paste time, so
-  every client keeps sending the old one until it is replaced. A changed icon is a new image path
-  ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)), so an old copy keeps showing the old icon too.
+  every client keeps sending the old one until it is replaced. A changed icon is a new image path and the
+  old one is deleted ([ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md)), so an old copy shows a
+  broken image for that icon until it is replaced.
 
 ## Documentation
 
 Before changing anything under `assets/`, read [ADR 0002](./docs/adr/0002-published-asset-paths-are-immutable.md):
-those paths are quoted by every email already sent, so they are never renamed or deleted.
+those paths are quoted by every email already sent, so the bytes at a path never change, and a path the
+Signature stops quoting is deleted at the cost of that icon in old mail.
 
 - [ARCHITECTURE.md](./ARCHITECTURE.md): the two products, the delivery path, the checks and merges, and the index of decisions
 - [GLOSSARY.md](./GLOSSARY.md): domain vocabulary

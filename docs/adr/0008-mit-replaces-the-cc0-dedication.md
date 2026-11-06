@@ -38,7 +38,7 @@ this repository invites changes.
 - **The licence is now stricter than it was**, which is the honest way to describe going from a public-domain
   dedication to a permissive licence. A reuser who wants the old terms can take any pre-relicensing commit.
 - **MIT still cannot reach the brand marks.** Almost everything in [`assets/images/png/`](../../assets/images/png) is a third-party logo
-  (LinkedIn, GitHub, X, Reddit, Medium, Strava, Unsplash, Bluesky, Stack Overflow, 500px), and no licence
+  (LinkedIn, GitHub, Reddit, Medium, Strava, Unsplash, Bluesky), and no licence
   granted here places someone else's trademark under it. Those files remain governed by their owners' brand
   guidelines whatever [`LICENSE`](../../LICENSE) says. What the licence actually covers is
   [`phone.png`](../../assets/images/png/phone.png), [`web.png`](../../assets/images/png/web.png) and the markup.
