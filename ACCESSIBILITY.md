@@ -9,6 +9,13 @@ doing, how to report a barrier, and what a change has to keep.
 
 - **Every fact is text.** The name, role, phone number, website and disclaimer are live text, not part of an
   image, so they can be read, zoomed, copied and searched with images blocked.
+- **The two disclaimer paragraphs are marked with their language**, `lang="en"` for the English one and
+  `lang="es"` for the Spanish one, so a screen reader that follows the mark reads each in the right voice.
+  The signature is pasted into a mail client as a fragment with no page language of its own, and how far a client
+  keeps the mark when it sends depends on the client.
+- **The disclaimer text is #6b6b6b at 10px**, a contrast of 5.3:1 on white and 5.0:1 on the off-white
+  (#f8f8f8) some clients use. That clears the 4.5:1 that WCAG asks of small text, though the 10px size is still
+  small and a reader's own zoom or text size is what enlarges it.
 - **Every image has alt text** that names what it stands for, such as "Phone" or "LinkedIn". With images blocked,
   the alt text stands in for the icon, and a screen reader reads it as the name of the link the icon sits in.
 - **Layout tables are marked as layout**, with `role="presentation"`, so a screen reader does not announce their
