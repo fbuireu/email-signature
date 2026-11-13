@@ -52,6 +52,8 @@ renders markup that Outlook mangles. Anything visual also means regenerating
   could harm a recipient, an issue otherwise
 - **A rendering bug** → an issue naming the mail client and OS, ideally with a
   screenshot
+- **An accessibility barrier** → an issue, with what
+  [ACCESSIBILITY.md](./ACCESSIBILITY.md) asks for
 - **A fix** → fork, branch, PR, respecting the rules above; the PR template
   walks the checklist
 

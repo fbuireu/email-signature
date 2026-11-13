@@ -71,6 +71,7 @@ Signature stops quoting is deleted at the cost of that icon in old mail.
 - [CODING_STANDARDS.md](./CODING_STANDARDS.md): how the markup and the assets are written, checked at review
 - [CONTRIBUTING.md](./CONTRIBUTING.md): what kind of contribution fits, and how to send one
 - [SECURITY.md](./SECURITY.md): how to report a link or an asset that could harm a recipient
+- [ACCESSIBILITY.md](./ACCESSIBILITY.md): what the signature does for readers with images blocked, a screen reader or zoom, and how to report a barrier
 - [docs/adr/](./docs/adr/): why each irreversible decision was made, and what it cost
 
 ## License
